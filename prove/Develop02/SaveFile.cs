@@ -2,18 +2,18 @@ using System;
 
 class SaveFile
 {
+    static void _SaveTheCurrnetFile(String FileName, Journal journal){
 
-    static void Main(string[] args)
-    {
+        using (StreamWriter DumpFile = new StreamWriter(FileName)){
 
-        String fileName = "JournalSaves.txt";
+            foreach(Entry e in journal._entries){
 
-        
-        using (StreamWriter outputFile = new StreamWriter(fileName)) {
-        outputFile.WriteLine();
-        
-        string color = "Blue";
-        outputFile.WriteLine($"My favorite color is {color}");
+                DumpFile.WriteLine(e._time + "|" + e._name + "|" + e._prompt + "|" + e._entry + "|");
+
+            }
+
+
+
         }
 
     }
