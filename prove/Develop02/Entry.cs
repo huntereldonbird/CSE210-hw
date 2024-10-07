@@ -2,13 +2,14 @@ using System;
 
 class Entry
 {
-    public String _entry;
+    public int _time;
     public String _name;
     public String _prompt;
-    public int _time;
+
+    public String _entry;
 
     public String _Display(){
-        Console.WriteLine(_name + _time + _prompt + _entry);
-        return _name + _time + _prompt + _entry;
+        Console.WriteLine(_time + _name + _prompt + _entry);
+        return _time + _name + _prompt + _entry;
     }
 }
