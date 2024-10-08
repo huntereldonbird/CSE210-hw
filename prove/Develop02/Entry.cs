@@ -8,8 +8,10 @@ class Entry
 
     public String _entry;
 
-    public String _Display(){
+    public void _Display(){
         Console.WriteLine(_time + _name + _prompt + _entry);
+    }
+    public String GetEntry(){
         return _time + _name + _prompt + _entry;
     }
 }

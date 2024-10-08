@@ -11,10 +11,6 @@ class SaveFile
                 DumpFile.WriteLine(e._time + "|" + e._name + "|" + e._prompt + "|" + e._entry + "|");
 
             }
-
-
-
         }
-
     }
 }

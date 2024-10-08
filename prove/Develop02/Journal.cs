@@ -7,4 +7,5 @@ class Journal
     public void _Display(){
         foreach (Entry i in _entries) { i._Display(); }
     }
+    
 }
