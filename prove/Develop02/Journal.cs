@@ -1,4 +1,6 @@
 using System;
+using System.Runtime.InteropServices;
+
 
 class Journal
 {
@@ -7,5 +9,19 @@ class Journal
     public void _Display(){
         foreach (Entry i in _entries) { i._Display(); }
     }
+
+    public Entry _CreateNewEntry(int time, String name, String prompt, String entry){
+        Entry newEntry = new Entry();
+
+        newEntry._time = time;
+        newEntry._name = name;
+        newEntry._prompt = prompt;
+        newEntry._entry = entry;
+
+        
+
+        return newEntry;
+    }
+
     
 }
