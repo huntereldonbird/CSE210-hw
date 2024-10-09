@@ -18,7 +18,7 @@ public class SaveFile
 
 public class LoadFile{
 
-    public static Journal LoadTheCurrentJournal(String FileName){
+    public static Journal _LoadTheCurrentJournal(String FileName){
         Journal loaded = new Journal();
 
         string[] lines = System.IO.File.ReadAllLines(FileName);

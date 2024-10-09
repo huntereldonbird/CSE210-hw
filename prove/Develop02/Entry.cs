@@ -11,7 +11,6 @@ public class Entry
 
     public String _POTD;
 
-
     public void _Display(){
         Console.WriteLine(_time + _name + _prompt + _entry + _mood + _POTD);
     }
