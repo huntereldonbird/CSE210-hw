@@ -2,7 +2,7 @@ using System;
 
 class SaveFile
 {
-    static void _SaveTheCurrnetFile(String FileName, Journal journal){
+    public static void _SaveTheCurrnetFile(String FileName, Journal journal){
 
         using (StreamWriter DumpFile = new StreamWriter(FileName)){
 
@@ -17,7 +17,7 @@ class SaveFile
 
 public class LoadFile{
 
-    static Journal LoadTheCurrentJournal(String FileName){
+    public static Journal LoadTheCurrentJournal(String FileName){
         Journal loaded = new Journal();
 
         string[] lines = System.IO.File.ReadAllLines(FileName);
@@ -41,8 +41,5 @@ public class LoadFile{
 
 
         return loaded;
-    }
-    static void LoadTheCurrentFile(String FileName){
-
     }
 }

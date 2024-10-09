@@ -1,6 +1,6 @@
 using System;
 
-class Entry
+public class Entry
 {
     public int _time;
     public String _name;

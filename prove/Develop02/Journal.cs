@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-class Journal
+public class Journal
 {
     public List<Entry> _entries = [];
 
