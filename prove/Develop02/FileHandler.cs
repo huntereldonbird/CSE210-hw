@@ -2,7 +2,7 @@ using System;
 
 class SaveFile
 {
-    public static void _SaveTheCurrnetFile(String FileName, Journal journal){
+    public static void _SaveTheCurrentFile(String FileName, Journal journal){
 
         using (StreamWriter DumpFile = new StreamWriter(FileName)){
 
@@ -31,7 +31,8 @@ public class LoadFile{
             Ent._name = parts[1];
             Ent._prompt = parts[2];
             Ent._entry = parts[3];
-
+            Ent._mood = parts[4];
+            int._photo = parts[5];
             
             //add this to the current "loaded" list of entries stored into the journal entries,
             //Also call this from the program.cs file, dont use it here, it has a return.
