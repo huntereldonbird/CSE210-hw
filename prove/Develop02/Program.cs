@@ -6,4 +6,5 @@ class Program
     {
         Journal loaded = LoadFile.LoadTheCurrentJournal("Test.txt");
     }
+    Journal jl = LoadFile.LoadTheCurrentJournal("test.txt");
 }

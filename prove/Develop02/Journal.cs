@@ -10,15 +10,16 @@ public class Journal
         foreach (Entry i in _entries) { i._Display(); }
     }
 
-    public Entry _CreateNewEntry(int time, String name, String prompt, String entry){
+    public Entry _CreateNewEntry(int time, String name, String prompt, String entry, String mood, String potd){
         Entry newEntry = new Entry();
 
         newEntry._time = time;
         newEntry._name = name;
         newEntry._prompt = prompt;
         newEntry._entry = entry;
+        newEntry._mood = mood;
+        newEntry._POTD = potd;
 
-        
 
         return newEntry;
     }
