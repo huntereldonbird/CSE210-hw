@@ -1,14 +1,15 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 
-class SaveFile
+public class SaveFile
 {
-    static void _SaveTheCurrnetFile(String FileName, Journal journal){
+    public static void _SaveTheCurrnetFile(String FileName, Journal journal){
 
         using (StreamWriter DumpFile = new StreamWriter(FileName)){
 
             foreach(Entry e in journal._entries){
 
-                DumpFile.WriteLine(e._time + "|" + e._name + "|" + e._prompt + "|" + e._entry + "|");
+                DumpFile.WriteLine(e._time + "|" + e._name + "|" + e._prompt + "|" + e._entry + "|" + e._mood + "|" + e._POTD + "|");
 
             }
         }
@@ -17,7 +18,7 @@ class SaveFile
 
 public class LoadFile{
 
-    static Journal LoadTheCurrentJournal(String FileName){
+    public static Journal LoadTheCurrentJournal(String FileName){
         Journal loaded = new Journal();
 
         string[] lines = System.IO.File.ReadAllLines(FileName);
@@ -31,6 +32,8 @@ public class LoadFile{
             Ent._name = parts[1];
             Ent._prompt = parts[2];
             Ent._entry = parts[3];
+            Ent._mood = parts[4];
+            Ent._POTD = parts[5];
 
             
             //add this to the current "loaded" list of entries stored into the journal entries,
@@ -41,8 +44,5 @@ public class LoadFile{
 
 
         return loaded;
-    }
-    static void LoadTheCurrentFile(String FileName){
-
     }
 }

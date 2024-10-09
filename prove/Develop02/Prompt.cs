@@ -1,10 +1,9 @@
 using System;
 
-class Program
+class Promtps
 {
     static void Main(string[] args)
     {
         Console.WriteLine("Hello Develop02 World!");
     }
-    Journal jl = LoadFile.LoadTheCurrentJournal("test.txt");
 }
