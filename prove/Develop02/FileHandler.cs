@@ -22,7 +22,7 @@ public class LoadFile{
         Journal loaded = new Journal();
 
         string[] lines = System.IO.File.ReadAllLines(FileName);
-
+        
         foreach ( string line in lines){
             string[] parts = line.Split("|");
 
