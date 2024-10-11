@@ -2,7 +2,7 @@ using System.Net.NetworkInformation;
 using System;
 
 public class Prompt {
-    public List<String> _List = new List<String>{
+    public static List<String> _List = new List<String>{
         "Who was the most interesting person I interacted with today?",
         "What was the best part of my day?",
         "How did I see the hand of the Lord in my life today?",
@@ -22,7 +22,7 @@ public class Prompt {
     };
 
 
-    public String GetRandomPrompt(){
+    public static String GetRandomPrompt(){
         Random rand = new Random();
         int r = rand.Next(_List.Count);
         return _List[r];

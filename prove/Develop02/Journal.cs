@@ -7,10 +7,10 @@ public class Journal
     public List<Entry> _entries = [];
 
     public void _Display(){
-        foreach (Entry i in _entries) { i._Display(); }
+        foreach (Entry i in _entries) { i._Display(); Console.WriteLine(""); }
     }
 
-    public Entry _CreateNewEntry(String time, String name, String prompt, String entry, String mood, String potd){
+    public static Entry _CreateNewEntry(String time, String name, String prompt, String entry, String mood, String potd){
         Entry newEntry = new Entry();
 
         newEntry._time = time;

@@ -3,7 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 
 public class SaveFile
 {
-    public static void _SaveTheCurrentFile(String FileName, Journal journal){
+    public static bool _SaveTheCurrentFile(String FileName, Journal journal){
 
         using (StreamWriter DumpFile = new StreamWriter(FileName)){
 
@@ -13,6 +13,8 @@ public class SaveFile
 
             }
         }
+
+        return true;
     }
 }
 
