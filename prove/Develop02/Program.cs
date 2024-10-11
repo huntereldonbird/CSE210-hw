@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks.Dataflow;
 using System.Transactions;
 
@@ -14,7 +15,7 @@ class Program
         Console.WriteLine("Load: 3");
         Console.WriteLine("Save: 4");
         Console.WriteLine("Quit: 5");
-        
+        string UserInput = Console.ReadLine();
 
 
 
