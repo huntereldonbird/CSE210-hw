@@ -2,7 +2,7 @@ using System;
 
 public class Entry
 {
-    public int _time;
+    public String _time;
     public String _name;
     public String _prompt;
 

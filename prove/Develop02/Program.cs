@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks.Dataflow;
 using System.Transactions;
 
-class Program
+public class Program
 {
 
     public Journal currentJournal = new Journal();
@@ -28,15 +28,19 @@ class Program
         Console.Write("What is your current mood? ");
         String MoodInput = Console.ReadLine();
 
-        Console.WriteLine(Prompt.GetRadom());
+
+        String newPrompt;
+        
+        
+
+        Console.WriteLine();
         String entry = Console.ReadLine();
 
         DateTime theCurrentTime = DateTime.Now;
-        string dateText = theCurrentTime.ToShortDateString();
+        String dateText = theCurrentTime.ToShortDateString();
         
 
 
-        currentJournal._CreateNewEntry();
     }
     public void _Display(){
         currentJournal._Display();
@@ -45,7 +49,7 @@ class Program
         currentJournal = LoadFile._LoadTheCurrentJournal("Journal.txt");
     }
     public void _Save(){
-        SaveFile._SaveTheCurrnetFile("Journal.txt", currentJournal);
+        //SaveFile._SaveTheCurrnetFile("Journal.txt", currentJournal);
     }
     public void _Quite(){
         

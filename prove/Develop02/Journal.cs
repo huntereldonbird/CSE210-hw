@@ -10,7 +10,7 @@ public class Journal
         foreach (Entry i in _entries) { i._Display(); }
     }
 
-    public Entry _CreateNewEntry(int time, String name, String prompt, String entry, String mood, String potd){
+    public Entry _CreateNewEntry(String time, String name, String prompt, String entry, String mood, String potd){
         Entry newEntry = new Entry();
 
         newEntry._time = time;

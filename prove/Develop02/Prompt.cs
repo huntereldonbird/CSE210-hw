@@ -1,5 +1,8 @@
+using System.Net.NetworkInformation;
+using System;
+
 public class Prompt {
-    List<String> {
+    public List<String> _List = new List<String>{
         "Who was the most interesting person I interacted with today?",
         "What was the best part of my day?",
         "How did I see the hand of the Lord in my life today?",
@@ -16,5 +19,16 @@ public class Prompt {
         "How did I help gather scattered Israel today?",
         "What delicious things did I eat today?",
         "What am I looking forward to in the future"
+    };
+
+
+    public String GetRandomPrompt(){
+        Random rand = new Random();
+        int r = rand.Next(_List.Count);
+        return _List[r];
     }
+
+
+
+
 }

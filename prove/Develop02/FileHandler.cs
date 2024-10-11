@@ -28,7 +28,7 @@ public class LoadFile{
 
             Entry Ent = new Entry();
             
-            Ent._time = Int32.Parse(parts[0]);
+            Ent._time = parts[0];
             Ent._name = parts[1];
             Ent._prompt = parts[2];
             Ent._entry = parts[3];
