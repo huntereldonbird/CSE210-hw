@@ -3,7 +3,7 @@ using System;
 class Program {
     static void Main()
     {
-        Reference reference = new Reference();
+        Nicaea reference = new Nicaea();
         reference.Main();
     }
 }
