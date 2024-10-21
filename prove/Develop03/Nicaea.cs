@@ -8,4 +8,12 @@ class Nicaea
     {
         Console.WriteLine("Hello Develop03 World!");
     }
+
+    private void RandomRemoveWords(){
+
+
+
+        
+    }
+
 }
