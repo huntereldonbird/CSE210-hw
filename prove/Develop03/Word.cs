@@ -2,7 +2,7 @@ using System;
 
 class Word
 {
-    private bool _isRevealed;
+    private bool _isRevealed = true;
     private String _theWord;
 
 
