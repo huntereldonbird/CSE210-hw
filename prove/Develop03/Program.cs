@@ -1,9 +1,9 @@
 using System;
 
-class Program
-{
-    static void Main(string[] args)
+class Program {
+    static void Main()
     {
-        Console.WriteLine("Hello Develop03 World!");
+        Reference reference = new Reference();
+        reference.Main();
     }
 }

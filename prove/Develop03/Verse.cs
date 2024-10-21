@@ -5,6 +5,8 @@ class Verse {
 
     private List<Word> _wholeVerse;
 
+    
+
     public List<Word> Get_wholeVerse(){
         return _wholeVerse;
     }

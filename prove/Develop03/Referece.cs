@@ -4,7 +4,7 @@ class Reference
 {
 
    private List<Verse> _allVerse;
-    static void Main(string[] args)
+    public void Main()
     {
         Console.WriteLine("Hello Develop03 World!");
     }

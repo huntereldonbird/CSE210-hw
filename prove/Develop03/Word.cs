@@ -5,6 +5,8 @@ class Word
     private bool _isRevealed;
     private String _theWord;
 
+
+
     public bool Get_isRevealed(){
         return _isRevealed;
     }
