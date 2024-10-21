@@ -1,10 +1,16 @@
 using System;
+using System.Dynamic;
 
 class Verse {
 
     private List<Word> _wholeVerse;
-    static void Main(string[] args)
-    {
-        Console.WriteLine("Hello Develop03 World!");
+
+    public List<Word> Get_wholeVerse(){
+        return _wholeVerse;
     }
+
+    public void Set_wholeVerse(List<Word> set){
+        _wholeVerse = set;
+    }
+
 }
