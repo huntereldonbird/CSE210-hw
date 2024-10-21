@@ -1,6 +1,6 @@
 using System;
 
-class Reference
+class Nicaea
 {
 
    private List<Verse> _allVerse;
