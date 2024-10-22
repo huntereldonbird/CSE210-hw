@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 
 class Nicaea
 {
@@ -7,7 +6,22 @@ class Nicaea
    private List<Verse> _allVerse;
     public void Main()
     {
-        Console.WriteLine("Hello Develop03 World!");
+        Console.WriteLine("Welcome to Scripture memorizer!");
+
+        while (true)  
+        {
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+
+            if (keyInfo.Key == ConsoleKey.Escape)
+            {
+                break;
+            }
+            else if (keyInfo.Key == ConsoleKey.Enter)
+            {
+                //put stuff to randomly remove the key.
+
+            }
+        }
     }
 
     private void RandomRemoveWords(int removeAmout, int from){
