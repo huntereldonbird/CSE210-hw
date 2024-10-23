@@ -31,12 +31,16 @@ class Nicaea
 
             Random random = new Random();
 
-            int ToRemove = random.Next(_allVerse.Count());
+            int ToRemove = random.Next(_allVerse[from].Get_wholeVerse().Count());
 
+            if(_allVerse[from].Get_wholeVerse()[ToRemove].Get_isRevealed()){
 
+                _allVerse[from].Get_wholeVerse()[ToRemove].Set_isRevealed(false);
+                i++;
 
+            }
 
-            i++;
+            continue;
         }
     }
 
