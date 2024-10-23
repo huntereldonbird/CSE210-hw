@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 
 class Nicaea
 {
@@ -26,18 +27,30 @@ class Nicaea
 
     private void RandomRemoveWords(int removeAmout, int from){
 
-        for(int x = 0; x < _allVerse[from].Get_wholeVerse().Count(); x++){
+        for(int i = 0; i <= removeAmout; ) {
 
-            for(int i = 0; i < removeAmout;){
+            Random random = new Random();
 
-                Random rng = new Random();
+            int ToRemove = random.Next(_allVerse.Count());
 
-                int randNum = rng.Next(_allVerse.Count());
 
-                if(_allVerse[from].Get_wholeVerse()[randNum].Get_isRevealed() == true){
-                    _allVerse[from].Get_wholeVerse()[randNum].Set_isRevealed(false);
-                    i++;
-                }
+
+
+            i++;
+        }
+    }
+
+    private void Reset(){
+
+        for(int x = 0; x < _allVerse.Count(); ){
+
+            for(int y = 0; y < _allVerse[x].Get_wholeVerse().Count(); ){
+
+                Word ThisWord = _allVerse[x].Get_wholeVerse()[y];
+
+                ThisWord.Set_isRevealed(true);
+
+
             }
         }
     }
