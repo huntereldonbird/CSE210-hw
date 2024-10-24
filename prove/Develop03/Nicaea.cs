@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 class Nicaea
 {
 
-   public List<Verse> _allVerse;
+   public List<Verse> _allVerse = new List<Verse>();
     public void Main()
     {
 
@@ -12,17 +12,24 @@ class Nicaea
 
         // ALL OF THIS IS TEMPORARY I WANTED TO TEST THIS, Hunter
         Verse v = new Verse(null);
-        List<Verse> lv = new List<Verse>();
-        _allVerse = lv;
+        _allVerse.Add(v);
+         int CurrentVerseIndex = 0;
         // ONCE THIS FUNCTION IS ACTUALLY CREATED PLEASE DELETE THIS, Hunter
+        // of note as of now, if you dont pass anything through to the new List<Verse> it automatically just uses a default verse for testing, Hunter
 
 
         Console.WriteLine("Welcome to Scripture memorizer!");
+        _allVerse[0].PrintVerseToConsole();
 
         
 
         while (true)  
         {
+
+            Console.Clear();
+
+            _allVerse[0].PrintVerseToConsole();
+
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
             if (keyInfo.Key == ConsoleKey.Escape)
@@ -32,6 +39,12 @@ class Nicaea
             else if (keyInfo.Key == ConsoleKey.Enter)
             {
                 //put stuff to randomly remove the key.
+
+
+                Random rng = new Random();
+                int rngNum = rng.Next(0, 3);
+
+                RandomRemoveWords(rngNum, CurrentVerseIndex);
 
             }
         }

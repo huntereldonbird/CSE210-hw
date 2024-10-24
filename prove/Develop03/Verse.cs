@@ -48,10 +48,10 @@ class Verse {
         for(int i = 0; i < _wholeVerse.Count(); i++){
             
             if(_wholeVerse[i].Get_isRevealed()){
-                Console.Write(_wholeVerse[i].Get_theWord());
+                Console.Write(_wholeVerse[i].Get_theWord() + " ");
             }
             else{
-                Console.Write(GetUnRevealedWord(_wholeVerse[i]));
+                Console.Write(GetUnRevealedWord(_wholeVerse[i]) + " ");
             }
 
         }
