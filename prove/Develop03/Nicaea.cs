@@ -8,7 +8,12 @@ class Nicaea
     public void Main()
     {
         Console.WriteLine("Welcome to Scripture memorizer!");
+        int what_variable_we_in = -1;
 
+        Random thisranddom = new Random();
+        what_variable_we_in = thisranddom.Next(_allVerse.Count());
+
+        //get and set scripture here then display
         while (true)  
         {
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
@@ -19,7 +24,13 @@ class Nicaea
             }
             else if (keyInfo.Key == ConsoleKey.Enter)
             {
-                //put stuff to randomly remove the key.
+                int random_remove_num = 0;
+                Random random = new Random();
+                random_remove_num = random.Next(1,4);
+
+                RandomRemoveWords(random_remove_num, what_variable_we_in);
+                //display the scripture here
+
 
             }
         }
