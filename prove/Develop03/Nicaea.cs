@@ -4,10 +4,22 @@ using System.Runtime.CompilerServices;
 class Nicaea
 {
 
-   private List<Verse> _allVerse;
+   public List<Verse> _allVerse;
     public void Main()
     {
+
+
+
+        // ALL OF THIS IS TEMPORARY I WANTED TO TEST THIS, Hunter
+        Verse v = new Verse(null);
+        List<Verse> lv = new List<Verse>();
+        _allVerse = lv;
+        // ONCE THIS FUNCTION IS ACTUALLY CREATED PLEASE DELETE THIS, Hunter
+
+
         Console.WriteLine("Welcome to Scripture memorizer!");
+
+        
 
         while (true)  
         {
@@ -25,6 +37,7 @@ class Nicaea
         }
     }
 
+    // Give it a random amount # of words to remove and a verse (you need to give it a verse index from _allVese) and it sets the is removed values, Hunter
     private void RandomRemoveWords(int removeAmout, int from){
 
         for(int i = 0; i <= removeAmout; ) {
@@ -44,6 +57,8 @@ class Nicaea
         }
     }
 
+
+    // Resets the "revealed" status of any verse currently contianed to is_revealed = true, hunter
     private void Reset(){
 
         for(int x = 0; x < _allVerse.Count(); ){
