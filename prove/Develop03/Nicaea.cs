@@ -27,7 +27,7 @@ class Nicaea
         {
 
             Console.Clear();
-
+            Console.WriteLine("Welcome to Scripture memorizer!");
             _allVerse[0].PrintVerseToConsole();
 
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
