@@ -6,6 +6,13 @@ class Word
     private String _theWord;
 
 
+    public Word(String s, bool r){
+
+        _theWord = s;
+        _isRevealed = r;
+
+    }
+
 
     public bool Get_isRevealed(){
         return _isRevealed;
