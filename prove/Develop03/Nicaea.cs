@@ -23,7 +23,7 @@ class Nicaea
 
         
 
-        while (true)  
+        while (!WholeVerseIsHidden(_allVerse[0]))  
         {
 
             Console.Clear();
@@ -70,6 +70,19 @@ class Nicaea
         }
     }
 
+    // use this to check if the verse you are currently using is completly "spent" or relealed, hunter
+    // it returns true if No words are revealed, hunter
+private bool WholeVerseIsHidden(Verse verse)
+    {
+        for (int i = 0; i <= verse.Get_wholeVerse().Count() - 1; i++)
+        {
+            if (verse.Get_wholeVerse()[i].Get_isRevealed())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 
     // Resets the "revealed" status of any verse currently contianed to is_revealed = true, hunter
     private void Reset(){
