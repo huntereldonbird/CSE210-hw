@@ -19,19 +19,11 @@ class Nicaea
 
 
         Console.WriteLine("Welcome to Scripture memorizer!");
-<<<<<<< HEAD
-        int what_variable_we_in = -1;
-=======
         _allVerse[0].PrintVerseToConsole();
 
         
->>>>>>> 681b5306ef8609656b81d88f84f213e78bfb70e3
 
-        Random thisranddom = new Random();
-        what_variable_we_in = thisranddom.Next(_allVerse.Count());
-
-        //get and set scripture here then display
-        while (true)  
+        while (!WholeVerseIsHidden(_allVerse[0]))  
         {
 
             Console.Clear();
@@ -46,13 +38,7 @@ class Nicaea
             }
             else if (keyInfo.Key == ConsoleKey.Enter)
             {
-                int random_remove_num = 0;
-                Random random = new Random();
-                random_remove_num = random.Next(1,4);
-
-                RandomRemoveWords(random_remove_num, what_variable_we_in);
-                //display the scripture here
-
+                //put stuff to randomly remove the key.
 
 
                 Random rng = new Random();
@@ -84,6 +70,19 @@ class Nicaea
         }
     }
 
+    // use this to check if the verse you are currently using is completly "spent" or relealed, hunter
+    // it returns true if No words are revealed, hunter
+private bool WholeVerseIsHidden(Verse verse)
+    {
+        for (int i = 0; i <= verse.Get_wholeVerse().Count() - 1; i++)
+        {
+            if (verse.Get_wholeVerse()[i].Get_isRevealed())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 
     // Resets the "revealed" status of any verse currently contianed to is_revealed = true, hunter
     private void Reset(){
