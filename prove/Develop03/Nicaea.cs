@@ -48,25 +48,28 @@ class Nicaea
 
             }
         }
+        Console.Clear();
+        _allVerse[0].PrintVerseToConsole();
+        Console.WriteLine();
+        Console.WriteLine("You have hidden all the words. Good job memorizing");
     }
 
     // Give it a random amount # of words to remove and a verse (you need to give it a verse index from _allVese) and it sets the is removed values, Hunter
-    private void RandomRemoveWords(int removeAmout, int from){
+    private void RandomRemoveWords(int removeAmount, int from) {
+        int wordsRemoved = 0;
+        int maxAttempts = _allVerse[from].Get_wholeVerse().Count() * 2; // Prevent infinite loop
+        int attempts = 0;
+        Random random = new Random();
 
-        for(int i = 0; i <= removeAmout; ) {
+        while (wordsRemoved <= removeAmount && attempts < maxAttempts) {
+            int toRemove = random.Next(0, _allVerse[from].Get_wholeVerse().Count());
 
-            Random random = new Random();
-
-            int ToRemove = random.Next(_allVerse[from].Get_wholeVerse().Count());
-
-            if(_allVerse[from].Get_wholeVerse()[ToRemove].Get_isRevealed()){
-
-                _allVerse[from].Get_wholeVerse()[ToRemove].Set_isRevealed(false);
-                i++;
-
+            if (_allVerse[from].Get_wholeVerse()[toRemove].Get_isRevealed()) {
+                _allVerse[from].Get_wholeVerse()[toRemove].Set_isRevealed(false);
+                wordsRemoved++;
             }
 
-            continue;
+            attempts++;
         }
     }
 
