@@ -28,6 +28,7 @@ class Nicaea
 
             Console.Clear();
             Console.WriteLine("Welcome to Scripture memorizer!");
+            Console.WriteLine("Press enter to hide words and you can press escape to get out of the program at anytime.");
             
             Console.WriteLine("");
             
