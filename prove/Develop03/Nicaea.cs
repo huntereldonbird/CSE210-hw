@@ -28,6 +28,13 @@ class Nicaea
 
             Console.Clear();
             Console.WriteLine("Welcome to Scripture memorizer!");
+            
+            Console.WriteLine("");
+            
+            Console.WriteLine(_allVerse[0].Get_name() + ":");
+            
+         
+            
             _allVerse[0].PrintVerseToConsole();
 
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
@@ -42,7 +49,7 @@ class Nicaea
 
 
                 Random rng = new Random();
-                int rngNum = rng.Next(0, 3);
+                int rngNum = rng.Next(0, 5);
 
                 RandomRemoveWords(rngNum, CurrentVerseIndex);
 
