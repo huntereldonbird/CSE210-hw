@@ -11,7 +11,7 @@ class Nicaea
 
 
         // ALL OF THIS IS TEMPORARY I WANTED TO TEST THIS, Hunter
-        Verse v = new Verse(null);
+        Verse v = new Verse();
         _allVerse.Add(v);
          int CurrentVerseIndex = 0;
         // ONCE THIS FUNCTION IS ACTUALLY CREATED PLEASE DELETE THIS, Hunter
