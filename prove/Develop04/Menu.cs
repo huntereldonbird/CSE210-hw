@@ -1,16 +1,17 @@
 namespace Develop04;
 
-public class menu
+public class Menu
 {
-    private String universalStart = "Welcome to Wellness Program";
-    private String _QuestionPrompt = "What activity would you like to do today?:";
+    
 
     private int AmountInSeconds;
 
     public void Starter()
     {
-        Console.WriteLine(universalStart);
-        Console.WriteLine(_QuestionPrompt);
+        Console.WriteLine("Welcome the wellness helper!");
+        
+        
+        
         Console.WriteLine("Breathing = 1,");
         Console.WriteLine("Refelcting = 2,");
         Console.WriteLine("Listening = 3,");
@@ -20,16 +21,14 @@ public class menu
         switch (Int32.Parse(UserInput))
         {
             case 1:
+                Breathing breathing = new Breathing();
                 break;
             case 2:
+                Reflection reflection = new Reflection();
                 break;
             case 3:
+                Listening listening = new Listening();
                 break;
         }
-        
-        
     }
-
-
-
 }
