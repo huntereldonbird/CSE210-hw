@@ -22,6 +22,7 @@ public class Menu
         {
             case 1:
                 Breathing breathing = new Breathing();
+                breathing.DoThis();
                 break;
             case 2:
                 Reflection reflection = new Reflection();
