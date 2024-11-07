@@ -21,7 +21,24 @@ public class Spinner
         
         Thread.Sleep(500);
         
+        Console.Write("\b \b");
+        
         ACTIVATE();
+    }
+
+    public void CountDown(int seconds)
+    {
+        for (int i = 0; i <= seconds; )
+        {
+            Console.Write(i);
+            
+            Thread.Sleep(1000);
+
+            Console.Write("\b \b");
+
+            i++;
+                
+        }
     }
 
     

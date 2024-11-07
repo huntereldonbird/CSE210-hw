@@ -6,6 +6,18 @@ class Activity
     private String _Start = "Welcome to the Wellness application.";
     private String _Ender = "Hopefully you are feelig better now!";
 
+    private List<String> _Prompts;
+
+    public List<String> gsetPromts(List<String> prompts)
+    {
+        if (prompts != null)
+        {
+            _Prompts = prompts;
+        }
+
+        return _Prompts;
+    }
+    
     public String gsetOpener(String s) {
         if (s != null) { _Opener = s; }
         return _Opener;
