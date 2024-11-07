@@ -8,13 +8,8 @@ class Activity
 
     private List<String> _Prompts;
 
-    public List<String> gsetPromts(List<String> prompts)
-    {
-        if (prompts != null)
-        {
-            _Prompts = prompts;
-        }
-
+    public List<String> gsetPromts(List<String> prompts) {
+        if (prompts != null) { _Prompts = prompts; }
         return _Prompts;
     }
     
@@ -38,12 +33,22 @@ class Activity
 
     public void Begin()
     {
-        Console.WriteLine(_Start);
+        Console.Clear();
+        Console.WriteLine(gsetStart(null));
+        Console.WriteLine();
+        Console.WriteLine(gsetOpener(null));
+        Console.WriteLine();
+        Console.Write("For how many seconds would you like for this activity? ");
     }
 
     public void End()
     {
+        Console.WriteLine("Well Done!");
+        Spinner spinner = new Spinner();
+        spinner.Animate(5);
+        Console.WriteLine();
         Console.WriteLine(_Ender);
+        spinner.Animate(5);
     }
 
     

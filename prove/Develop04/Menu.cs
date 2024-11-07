@@ -26,9 +26,11 @@ public class Menu
                 break;
             case 2:
                 Reflection reflection = new Reflection();
+                reflection.DoThis();
                 break;
             case 3:
                 Listening listening = new Listening();
+                listening.DoThis();
                 break;
         }
     }

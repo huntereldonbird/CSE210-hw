@@ -19,7 +19,7 @@ class Reflection: Activity
     public Reflection()
     {
         gsetOpener("This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.");
-
+        gsetStart("Welcome to the Relfection Activity");
         List<String> tprompts =
         [
             "Think of a time when you stood up for someone else.",
@@ -34,9 +34,53 @@ class Reflection: Activity
 
     public void DoThis()
     {
+        Begin();
+
+        int UserInput = Int32.Parse(Console.ReadLine());
+        
         Console.Clear();
-        Console.WriteLine(gsetOpener(null));
-        Console.WriteLine(gsetStart(null));
-        Console.WriteLine("For how many seconds would you like for this activity?: ");
+        Console.WriteLine("Get Ready...");
+        
+        Spinner spinner1 = new Spinner();
+        spinner1.Animate(5);
+        Console.WriteLine();
+
+        Console.WriteLine("Consider the following Prompt:");
+        Console.WriteLine();
+        
+        Random rand = new Random();
+        int rng = rand.Next(gsetPromts(null).Count);
+        Console.WriteLine("  ---  " + gsetPromts(null)[rng] + "  ---  ");
+        
+        Console.WriteLine("When you have something in mind, press enter to continue.");
+        
+        ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+        if (keyInfo.Key == ConsoleKey.Enter)
+        {
+            
+            Console.WriteLine("Now ponder on each of the following questions as they related to this expereince.");
+            Console.Write("You may begin in: ");
+            spinner1.CountDown(5);
+            
+            Console.Clear();
+            
+            DateTime startTime = DateTime.Now;
+            int index = 0;
+            while (DateTime.Now <= startTime.AddSeconds(UserInput))
+            {
+                Console.WriteLine(RelectionPrompts[index]);
+            
+                Spinner spinner = new Spinner();
+                spinner.Animate(4);
+            
+            
+                index++;
+            }
+
+            Console.Clear();
+            gsetEnder("You have completed another " + UserInput.ToString() + " seconds of the Reflecting Activity.");
+            End();
+        }
+
     }
 }
