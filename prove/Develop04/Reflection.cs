@@ -3,7 +3,7 @@ using System;
 
 class Reflection: Activity
 {
-    private List<String> RelectionPrompts =
+    private List<String> _reflectionPrompts =
     [
         "Why was this experience meaningful to you?",
         "Have you ever done anything like this before?",
@@ -18,8 +18,8 @@ class Reflection: Activity
     
     public Reflection()
     {
-        gsetOpener("This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.");
-        gsetStart("Welcome to the Relfection Activity");
+        GSetOpener("This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.");
+        GSetStart("Welcome to the Relfection Activity");
         List<String> tprompts =
         [
             "Think of a time when you stood up for someone else.",
@@ -28,7 +28,7 @@ class Reflection: Activity
             "Think of a time when you did something truly selfless."
         ];
         
-        gsetPromts(tprompts);
+        GSetPromts(tprompts);
 
     }
 
@@ -36,7 +36,7 @@ class Reflection: Activity
     {
         Begin();
 
-        int UserInput = Int32.Parse(Console.ReadLine());
+        int userInput = Int32.Parse(Console.ReadLine());
         
         Console.Clear();
         Console.WriteLine("Get Ready...");
@@ -49,8 +49,8 @@ class Reflection: Activity
         Console.WriteLine();
         
         Random rand = new Random();
-        int rng = rand.Next(gsetPromts(null).Count);
-        Console.WriteLine("  ---  " + gsetPromts(null)[rng] + "  ---  ");
+        int rng = rand.Next(GSetPromts(null).Count);
+        Console.WriteLine("  ---  " + GSetPromts(null)[rng] + "  ---  ");
         
         Console.WriteLine("When you have something in mind, press enter to continue.");
         
@@ -66,9 +66,9 @@ class Reflection: Activity
             
             DateTime startTime = DateTime.Now;
             int index = 0;
-            while (DateTime.Now <= startTime.AddSeconds(UserInput))
+            while (DateTime.Now <= startTime.AddSeconds(userInput))
             {
-                Console.WriteLine(RelectionPrompts[index]);
+                Console.WriteLine(_reflectionPrompts[index]);
             
                 Spinner spinner = new Spinner();
                 spinner.Animate(4);
@@ -78,7 +78,7 @@ class Reflection: Activity
             }
 
             Console.Clear();
-            gsetEnder("You have completed another " + UserInput.ToString() + " seconds of the Reflecting Activity.");
+            GSetEnder("You have completed another " + userInput.ToString() + " seconds of the Reflecting Activity.");
             End();
         }
 

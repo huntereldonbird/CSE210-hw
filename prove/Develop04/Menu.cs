@@ -2,9 +2,6 @@ namespace Develop04;
 
 public class Menu
 {
-    
-
-    private int AmountInSeconds;
 
     public void Starter()
     {

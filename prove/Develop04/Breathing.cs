@@ -8,8 +8,8 @@ class Breathing : Activity
 {
     public Breathing()
     {
-        gsetOpener("This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.");
-        gsetStart("Welcome to the Breathing Activity");
+        GSetOpener("This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.");
+        GSetStart("Welcome to the Breathing Activity");
     }
 
     public void DoThis()
@@ -36,7 +36,7 @@ class Breathing : Activity
             
         }
         Console.Clear();
-        gsetEnder("You have completed another " + userin.ToString() + " seconds of the Breathing Activity.");
+        GSetEnder("You have completed another " + userin.ToString() + " seconds of the Breathing Activity.");
         End();
     }
 }

@@ -2,28 +2,30 @@ namespace Develop04;
 
 class Activity
 {
-    private String _Opener;
-    private String _Start = "Welcome to the Wellness application.";
-    private String _Ender = "Hopefully you are feelig better now!";
+    private String _opener;
+    private String _start = "Welcome to the Wellness application.";
+    private String _ender = "Hopefully you are feelig better now!";
 
-    private List<String> _Prompts;
+    private List<String> _prompts;
 
-    public List<String> gsetPromts(List<String> prompts) {
-        if (prompts != null) { _Prompts = prompts; }
-        return _Prompts;
+    // Leaving this note here for who ever grades this, I know this isnt exactally what was wanted, but I perfer doing it this way, let me know if I need to change this, hunter
+    
+    public List<String> GSetPromts(List<String> prompts) {
+        if (prompts != null) { _prompts = prompts; }
+        return _prompts;
     }
     
-    public String gsetOpener(String s) {
-        if (s != null) { _Opener = s; }
-        return _Opener;
+    public String GSetOpener(String s) {
+        if (s != null) { _opener = s; }
+        return _opener;
     }
-    public String gsetStart(String s) {
-        if (s != null) { _Start = s; }
-        return _Start;
+    public String GSetStart(String s) {
+        if (s != null) { _start = s; }
+        return _start;
     }
-    public String gsetEnder(String s) {
-        if (s != null) { _Ender = s; }
-        return _Ender;
+    public String GSetEnder(String s) {
+        if (s != null) { _ender = s; }
+        return _ender;
     }
 
     public Activity()
@@ -34,9 +36,9 @@ class Activity
     public void Begin()
     {
         Console.Clear();
-        Console.WriteLine(gsetStart(null));
+        Console.WriteLine(GSetStart(null));
         Console.WriteLine();
-        Console.WriteLine(gsetOpener(null));
+        Console.WriteLine(GSetOpener(null));
         Console.WriteLine();
         Console.Write("For how many seconds would you like for this activity? ");
     }
@@ -47,7 +49,7 @@ class Activity
         Spinner spinner = new Spinner();
         spinner.Animate(5);
         Console.WriteLine();
-        Console.WriteLine(_Ender);
+        Console.WriteLine(_ender);
         spinner.Animate(5);
     }
 

@@ -7,8 +7,8 @@ class Listening: Activity
     public Listening()
     {
         
-        gsetOpener("This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
-        gsetStart("Welcome to the Listing Activity");
+        GSetOpener("This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
+        GSetStart("Welcome to the Listing Activity");
         List<String> listeningPrompts =
         [
             "Who are people that you appreciate?",
@@ -17,7 +17,7 @@ class Listening: Activity
             "When have you felt the Holy Ghost this month?",
             "Who are some of your personal heroes?"
         ];
-        gsetPromts(listeningPrompts);
+        GSetPromts(listeningPrompts);
     }
     
     
@@ -25,7 +25,7 @@ class Listening: Activity
     {
         Begin();
         
-        int UserInput = Int32.Parse(Console.ReadLine());
+        int userinput = Int32.Parse(Console.ReadLine());
         
         Console.Clear();
         Console.WriteLine("Get Ready...");
@@ -35,8 +35,8 @@ class Listening: Activity
         Console.WriteLine();
         
         Random rand = new Random();
-        int rng = rand.Next(gsetPromts(null).Count);
-        Console.WriteLine("  ---  " + gsetPromts(null)[rng] + "  ---  ");
+        int rng = rand.Next(GSetPromts(null).Count);
+        Console.WriteLine("  ---  " + GSetPromts(null)[rng] + "  ---  ");
         
         Console.WriteLine();
         Console.Write("You may begin in: ");
@@ -47,7 +47,7 @@ class Listening: Activity
 
         int i = 0;
         
-        while (DateTime.Now < now.AddSeconds(UserInput))
+        while (DateTime.Now < now.AddSeconds(userinput))
         {
             Console.Write(">");
             String input = Console.ReadLine();
@@ -57,7 +57,7 @@ class Listening: Activity
         Console.WriteLine("You listed " + i.ToString() + " items!");
         Console.WriteLine();
         
-        gsetEnder("You have compelted another " + UserInput.ToString() + " seconds of the Listing Activity");
+        GSetEnder("You have compelted another " + userinput.ToString() + " seconds of the Listing Activity");
         End();
     }
     
