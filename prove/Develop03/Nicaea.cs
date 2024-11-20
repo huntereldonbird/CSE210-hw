@@ -37,6 +37,10 @@ class Nicaea
          
             
             _allVerse[0].PrintVerseToConsole();
+            
+            Console.WriteLine();
+            
+            Console.WriteLine("To quit press escape.");
 
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 

@@ -1,6 +1,6 @@
 namespace Develop05;
 
-public class Checklist
+public class Checklist : Goal
 {
     
 }
