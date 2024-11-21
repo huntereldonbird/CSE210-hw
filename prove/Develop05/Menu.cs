@@ -22,7 +22,30 @@ public class Menu
         Console.WriteLine("    4. Load Goals");
         Console.WriteLine("    5. Record Event");
         Console.WriteLine("    6. Quit");
-        Console.WriteLine("Select an option from the menu:");
+        Console.Write("Select an option from the menu: ");
+        
+        String userin = Console.ReadLine();
+        
+        switch (userin)
+        {
+            case "1":
+                CreateGoal();
+                break;
+            case "2":
+                DisplayAllGoals();
+                break;
+            case "3":
+                Save();
+                break;
+            case "4":
+                Load();
+                break;
+            case "5":
+                SetCompletions();
+                break;
+            case "6":
+                break;
+        }
         
     }
 
@@ -49,7 +72,9 @@ public class Menu
 
         switch (UserInput)
         {
+            
             case "1":
+                
                 Console.WriteLine("What is the name of your goal?");
                 String UI1 = Console.ReadLine();
                 Console.WriteLine("What is the description of your goal?");
@@ -63,6 +88,7 @@ public class Menu
                 break;
             
             case "2":
+                
                 Console.WriteLine("What is the name of your goal?");
                 String UI4 = Console.ReadLine();
                 Console.WriteLine("What is the description of your goal?");
@@ -98,6 +124,7 @@ public class Menu
                 _goals.Add(vice);
 
                 break;
+            
             case "4":
 
                 Console.WriteLine("What is the name of your goal?");
@@ -111,6 +138,11 @@ public class Menu
                 break;
         }
 
+    }
+
+    public void DisplayAllGoals()
+    {
+        
     }
 
     public int GetPoints()
