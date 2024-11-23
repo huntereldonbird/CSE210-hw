@@ -10,8 +10,8 @@ public class Simple : Goal
         GSet_description(d);
         base.GSet_points(p);
 
-        if( p != -1){ GSet_points(p);}
-        if( c != -1){ GSet_completed(c);}
+        GSet_points(p);
+        GSet_completed(c);
     }
     
     public override String SaveOutput() {

@@ -11,8 +11,8 @@ public class Eternal: Goal
         GSet_description(d);
         GSet_points(p);
 
-        if( p != -1){ GSet_points(p);}
-        if( c != -1){ GSet_completed(c);}
+        GSet_points(p);
+        GSet_completed(c);
         
     }
     
