@@ -5,7 +5,8 @@ public class Goal
     private String _name;
     private String _description;
     private int _points;
-    bool _completed;
+    private int _completed;
+    private int _amount;
 
     public String GSet_name(String n) {
         if (n != null) { _name = n; }
@@ -15,13 +16,19 @@ public class Goal
         if (d != null) { _description = d; }
         return _description;
     }
-    public int GSet_points(int p) {
+    public virtual int GSet_points(int p) {
         if (p != null) { _points = p; }
         return _points;
     }
-    public bool GSet_completed(bool c) {
-        if (c != null) { _completed = c; }
+    public virtual int GSet_completed(int c) {
+        if (c >= 0) { _completed = c; }
         return _completed;
+    }
+
+    public virtual int GSet_amount(int a)
+    {
+        if (a >= 0) { _amount = a; }
+        return _amount;
     }
 
     public Goal()
@@ -29,9 +36,17 @@ public class Goal
         
     }
 
-    public virtual String Display()
+    public virtual void Display()
     {
-        return "hi";
+        if(_completed > 0) { Console.Write("[X] ");}
+        else               {Console.Write("[ ] "); }
+        
+        Console.Write(GSet_name(null)+ " ");
+        Console.Write(GSet_description(null) + " ");
+    }
+
+    public virtual String SaveOutput() {
+        return "Goal" + "|" + GSet_name(null) + "|" + GSet_description(null) + "|" + GSet_points(-1) + "|" + GSet_amount(-1) + "|" + GSet_completed(-1);
     }
     
 }

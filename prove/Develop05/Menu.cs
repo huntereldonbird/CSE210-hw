@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Dynamic;
+using System.Runtime;
 using System.Xml.Linq;
 
 namespace Develop05;
@@ -7,12 +8,11 @@ namespace Develop05;
 public class Menu
 {
     
-    private List<Goal> _goals;
+    private List<Goal> _loadedGoals = new List<Goal>();
 
-    public Menu()
-    {
+    public void MenuOptions() {
         
-        Console.WriteLine("You have " + GetPoints() + " points.");
+        // Console.WriteLine("You have " + GetPoints() + " points.");
 
         Console.WriteLine("Menu Options:");
         
@@ -46,17 +46,57 @@ public class Menu
             case "6":
                 break;
         }
-        
     }
 
     public void Save()
     {
+        using (StreamWriter outputFile = new StreamWriter("SaveFile.txt"))
+        {
+            foreach (var VARIABLE in _loadedGoals) {
+                
+                outputFile.WriteLine(VARIABLE.SaveOutput());
+                
+            }
+        }
         
+        MenuOptions();
     }
 
     public void Load()
     {
-        
+        string filename = "SaveFile.txt";
+        string[] lines = System.IO.File.ReadAllLines(filename);
+
+        foreach (string line in lines)
+        {
+            string[] parts = line.Split("|");
+
+            String type = parts[0];
+            String name = parts[1];
+            String description = parts[2];
+            int points = Int32.Parse(parts[3]);
+            int amount = Int32.Parse(parts[4]);
+            int completed = Int32.Parse(parts[5]);
+
+            if (type == "Checklist") {
+                Checklist goal = new Checklist(name, description, points, amount, completed);
+                _loadedGoals.Add(goal);
+            }
+            if (type == "Eternal") {
+                Eternal goal = new Eternal(name, description, points, amount, completed);
+                _loadedGoals.Add(goal);
+            }
+            if (type == "Vice") {
+                Vice goal = new Vice(name, description, points, amount, completed);
+                _loadedGoals.Add(goal);
+            }
+            if (type == "Simple") {
+                Simple goal = new Simple(name, description, points, amount, completed);
+                _loadedGoals.Add(goal);
+            }
+            
+        }
+        MenuOptions();
     }
 
     public void CreateGoal()
@@ -82,8 +122,8 @@ public class Menu
                 Console.WriteLine("How many points would you like to assign to this goal?");
                 String UI3 = Console.ReadLine();
                 
-                Eternal eternal = new Eternal(UI1, UI2, Int32.Parse(UI3));
-                _goals.Add(eternal);
+                Eternal eternal = new Eternal(UI1, UI2, Int32.Parse(UI3), -1, 0);
+                _loadedGoals.Add(eternal);
                 
                 break;
             
@@ -96,8 +136,8 @@ public class Menu
                 Console.WriteLine("How many points would you like to assign to this goal?");
                 String UI6 = Console.ReadLine();
 
-                Simple simple = new Simple(UI4, UI5, Int32.Parse(UI6));
-                _goals.Add(simple);
+                Simple simple = new Simple(UI4, UI5, Int32.Parse(UI6), -1, 0);
+                _loadedGoals.Add(simple);
                 
                 break;
             
@@ -107,21 +147,13 @@ public class Menu
                 String UI11 = Console.ReadLine();
                 Console.WriteLine("What is the description of your goal?");
                 String UI12 = Console.ReadLine();
-                Console.WriteLine("How many sub-goals would you like to add?");
+                Console.WriteLine("How many points would you like to assign to this goal?");
                 String UI13 = Console.ReadLine();
+                Console.WriteLine("How many sub-goals would you like to add?");
+                String UI14 = Console.ReadLine();
                 
-                
-                List<Goal> tmpGoals = new List<Goal>();
-                for (int i = 0; i < Int32.Parse(UI13); i++)
-                {
-                    Console.WriteLine("What will be the " + i.ToString() + " Sub-goal?");
-                    String tmpInput = Console.ReadLine();
-                    ChecklistGoal checklistGoal = new ChecklistGoal(tmpInput);
-                    tmpGoals.Add(checklistGoal);
-                }
-                
-                Vice vice = new Vice(UI11, UI12, Int32.Parse(UI13));
-                _goals.Add(vice);
+                Checklist checklist = new Checklist(UI11, UI12, Int32.Parse(UI13), Int32.Parse(UI14), 0);
+                _loadedGoals.Add(checklist);
 
                 break;
             
@@ -134,6 +166,7 @@ public class Menu
                 Console.WriteLine("How many points would you like to have removed if this goal is completed? (Use a possitive value)");
                 String UI9 = Console.ReadLine();
                 
+                Vice vice = new Vice(UI7, UI8, Int32.Parse(UI9), -1, 0);
 
                 break;
         }
@@ -142,14 +175,37 @@ public class Menu
 
     public void DisplayAllGoals()
     {
-        
+
+        if (_loadedGoals.Count == 0) {
+            Console.WriteLine("No Goals");
+            return;
+        }
+
+        for (int i = 0; i < _loadedGoals.Count; i++)
+        {
+            Console.Write(i.ToString() + ". ");
+            _loadedGoals[i].Display();
+            Console.WriteLine();
+        }
     }
 
     public int GetPoints()
     {
+        
+        if (_loadedGoals.Count == 0) {
+            Console.WriteLine("No Goals");
+            return 0;
+        }
+        
+        int tally = 0;
 
+        for (int i = 0; i < _loadedGoals.Count; i++) {
 
-        return 1;
+            tally += _loadedGoals[i].GSet_points(-1);
+
+        }
+        
+        return tally;
     }
 
     public void SetCompletions()
