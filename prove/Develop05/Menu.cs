@@ -128,7 +128,7 @@ public class Menu
                 Console.WriteLine("How many points would you like to assign to this goal?");
                 String ui3 = Console.ReadLine();
                 
-                Eternal eternal = new Eternal(ui1, ui2, Int32.Parse(ui3), 0, 0);
+                Eternal eternal = new Eternal(ui1, ui2, Int32.Parse(ui3), 1, 0);
                 _loadedGoals.Add(eternal);
                 
                 break;
@@ -142,7 +142,7 @@ public class Menu
                 Console.WriteLine("How many points would you like to assign to this goal?");
                 String ui6 = Console.ReadLine();
 
-                Simple simple = new Simple(ui4, ui5, Int32.Parse(ui6), 0, 0);
+                Simple simple = new Simple(ui4, ui5, Int32.Parse(ui6), 1, 0);
                 _loadedGoals.Add(simple);
                 
                 break;
@@ -172,7 +172,7 @@ public class Menu
                 Console.WriteLine("How many points would you like to have removed if this goal is completed? (Use a possitive value)");
                 String ui9 = Console.ReadLine();
                 
-                Vice vice = new Vice(ui7, ui8, Int32.Parse(ui9), 0, 0);
+                Vice vice = new Vice(ui7, ui8, Int32.Parse(ui9), 1, 0);
 
                 break;
         }

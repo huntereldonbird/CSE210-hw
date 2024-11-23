@@ -17,11 +17,15 @@ public class Goal
         return _description;
     }
     public virtual int GSet_points(int p) {
-        if (p >= 0) { _points = p; }
+        if (p >= 0 ) { _points = p; }
         return _points;
     }
+
     public virtual int GSet_completed(int c) {
-        if (c >= 0) { _completed = c; }
+        if (c >= 0) {
+            _completed = c;
+        }
+
         return _completed;
     }
 
@@ -38,7 +42,7 @@ public class Goal
 
     public virtual void Display()
     {
-        if(_completed > 0) { Console.Write("[X] ");}
+        if((GSet_amount(-1) != 0) && (GSet_completed(-1)/GSet_amount(-1) >= 1)) { Console.Write("[X] ");}
         else               {Console.Write("[ ] "); }
         
         Console.Write(GSet_name(null)+ " ");
