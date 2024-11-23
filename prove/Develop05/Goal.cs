@@ -17,7 +17,7 @@ public class Goal
         return _description;
     }
     public virtual int GSet_points(int p) {
-        if (p != null) { _points = p; }
+        if (p >= 0) { _points = p; }
         return _points;
     }
     public virtual int GSet_completed(int c) {

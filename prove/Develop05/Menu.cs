@@ -12,7 +12,7 @@ public class Menu
 
     public void MenuOptions() {
         
-        // Console.WriteLine("You have " + GetPoints() + " points.");
+        Console.WriteLine("You have " + GetPoints() + " points.");
 
         Console.WriteLine("Menu Options:");
         
@@ -46,20 +46,22 @@ public class Menu
             case "6":
                 break;
         }
-    }
-
-    public void Save()
-    {
-        using (StreamWriter outputFile = new StreamWriter("SaveFile.txt"))
-        {
-            foreach (var VARIABLE in _loadedGoals) {
-                
-                outputFile.WriteLine(VARIABLE.SaveOutput());
-                
-            }
-        }
         
         MenuOptions();
+    }
+
+    public void Save() {
+        
+        String filename = "SaveFile.txt";
+        using (StreamWriter outputFile = new StreamWriter(filename))
+        {
+
+            for (int i = 0; i <= _loadedGoals.Count; i++) {
+                // outputFile.WriteLine(_loadedGoals[i].SaveOutput());
+            }
+            outputFile.WriteLine("JUST TESTING");
+
+        }
     }
 
     public void Load()
@@ -96,7 +98,6 @@ public class Menu
             }
             
         }
-        MenuOptions();
     }
 
     public void CreateGoal()
@@ -116,13 +117,13 @@ public class Menu
             case "1":
                 
                 Console.WriteLine("What is the name of your goal?");
-                String UI1 = Console.ReadLine();
+                String ui1 = Console.ReadLine();
                 Console.WriteLine("What is the description of your goal?");
-                String UI2 = Console.ReadLine();
+                String ui2 = Console.ReadLine();
                 Console.WriteLine("How many points would you like to assign to this goal?");
-                String UI3 = Console.ReadLine();
+                String ui3 = Console.ReadLine();
                 
-                Eternal eternal = new Eternal(UI1, UI2, Int32.Parse(UI3), -1, 0);
+                Eternal eternal = new Eternal(ui1, ui2, Int32.Parse(ui3), -1, 0);
                 _loadedGoals.Add(eternal);
                 
                 break;
@@ -130,13 +131,13 @@ public class Menu
             case "2":
                 
                 Console.WriteLine("What is the name of your goal?");
-                String UI4 = Console.ReadLine();
+                String ui4 = Console.ReadLine();
                 Console.WriteLine("What is the description of your goal?");
-                String UI5 = Console.ReadLine();
+                String ui5 = Console.ReadLine();
                 Console.WriteLine("How many points would you like to assign to this goal?");
-                String UI6 = Console.ReadLine();
+                String ui6 = Console.ReadLine();
 
-                Simple simple = new Simple(UI4, UI5, Int32.Parse(UI6), -1, 0);
+                Simple simple = new Simple(ui4, ui5, Int32.Parse(ui6), -1, 0);
                 _loadedGoals.Add(simple);
                 
                 break;
@@ -144,15 +145,15 @@ public class Menu
             case "3":
                 
                 Console.WriteLine("What is the name of your goal?");
-                String UI11 = Console.ReadLine();
+                String ui11 = Console.ReadLine();
                 Console.WriteLine("What is the description of your goal?");
-                String UI12 = Console.ReadLine();
+                String ui12 = Console.ReadLine();
                 Console.WriteLine("How many points would you like to assign to this goal?");
-                String UI13 = Console.ReadLine();
+                String ui13 = Console.ReadLine();
                 Console.WriteLine("How many sub-goals would you like to add?");
-                String UI14 = Console.ReadLine();
+                String ui14 = Console.ReadLine();
                 
-                Checklist checklist = new Checklist(UI11, UI12, Int32.Parse(UI13), Int32.Parse(UI14), 0);
+                Checklist checklist = new Checklist(ui11, ui12, Int32.Parse(ui13), Int32.Parse(ui14), 0);
                 _loadedGoals.Add(checklist);
 
                 break;
@@ -160,17 +161,16 @@ public class Menu
             case "4":
 
                 Console.WriteLine("What is the name of your goal?");
-                String UI7 = Console.ReadLine();
+                String ui7 = Console.ReadLine();
                 Console.WriteLine("What is the description of your goal?");
-                String UI8 = Console.ReadLine();
+                String ui8 = Console.ReadLine();
                 Console.WriteLine("How many points would you like to have removed if this goal is completed? (Use a possitive value)");
-                String UI9 = Console.ReadLine();
+                String ui9 = Console.ReadLine();
                 
-                Vice vice = new Vice(UI7, UI8, Int32.Parse(UI9), -1, 0);
+                Vice vice = new Vice(ui7, ui8, Int32.Parse(ui9), -1, 0);
 
                 break;
         }
-
     }
 
     public void DisplayAllGoals()
