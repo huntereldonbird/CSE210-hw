@@ -8,6 +8,10 @@ namespace Develop05;
 public class Menu
 {
     
+    // before you even look through my code, please know that I did this at like midnight
+    // and was really uninspired, so I basically just kept throwing stuff together until
+    // I could get it to work as opposed to planning out stuff, Hunter
+    
     private List<Goal> _loadedGoals = new List<Goal>();
 
     public void MenuOptions() {
@@ -44,6 +48,13 @@ public class Menu
             case "6":
 
                     return;
+                break;
+            case "7":
+
+                foreach (var VARIABLE in _loadedGoals) {
+                    Console.WriteLine(VARIABLE.GSet_name(null));
+                }
+                
                 break;
         }
         
@@ -173,7 +184,7 @@ public class Menu
                 String ui9 = Console.ReadLine();
                 
                 Vice vice = new Vice(ui7, ui8, Int32.Parse(ui9), 1, 0);
-
+                _loadedGoals.Add(vice);
                 break;
         }
     }
@@ -213,13 +224,12 @@ public class Menu
         
         int tally = 0;
 
-        for (int i = 0; i < _loadedGoals.Count; i++) {
+        foreach (Goal goal in _loadedGoals) {
 
-            if (_loadedGoals[i].GSet_completed(-1) > 0) {
-                tally += _loadedGoals[i].GSet_points(-1);
+            if (goal.ConsideredComplete()) {
+                tally += goal.WhenCompletedPoints();
             }
             
-
         }
         
         return tally;

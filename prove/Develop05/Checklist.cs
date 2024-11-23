@@ -16,6 +16,13 @@ public class Checklist : Goal
 		GSet_completed(c);
 	}
 
+	public override bool ConsideredComplete() {
+		if (GSet_completed(-1) >= GSet_amount(-1)) {
+			return true;
+		}
+		return false;
+	}
+
 	public override void Display() {
 		
 		if(GSet_completed(-1) >= GSet_amount(-1)) { Console.Write("[X] ");}

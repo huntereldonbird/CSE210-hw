@@ -11,6 +11,7 @@ public class Simple : Goal
         base.GSet_points(p);
 
         GSet_points(p);
+        GSet_amount(a);
         GSet_completed(c);
     }
     

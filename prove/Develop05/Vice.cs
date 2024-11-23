@@ -13,17 +13,29 @@ public class Vice: Goal
 
 
         GSet_points(p);
+        GSet_amount(a);
         GSet_completed(c);
     }
     
-    // public override void Display()
-    // {
-    //     if() { Console.Write("[X] ");}
-    //     else               {Console.Write("[ ] "); }
-    //     
-    //     Console.Write(GSet_name(null)+ " ");
-    //     Console.Write(GSet_description(null) + " ");
-    // }
+    public override bool ConsideredComplete() {
+        if (GSet_completed(-1) > 0) {
+            return true;
+        }
+        return false;
+    }
+    
+    public override int WhenCompletedPoints() {
+        return GSet_points(-1) * GSet_completed(-1) * -1;
+    }
+    
+    public override void Display()
+    {
+        if(ConsideredComplete()) { Console.Write("[X] ");}
+        else               {Console.Write("[ ] "); }
+         
+         Console.Write(GSet_name(null)+ " ");
+         Console.Write(GSet_description(null) + " ");
+    }
     
     public override String SaveOutput() {
         return "Vice" + "|" + GSet_name(null) + "|" + GSet_description(null) + "|" + GSet_points(-1) + "|" + GSet_amount(-1) + "|" + GSet_completed(-1);

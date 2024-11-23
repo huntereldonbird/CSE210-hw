@@ -12,18 +12,29 @@ public class Eternal: Goal
         GSet_points(p);
 
         GSet_points(p);
+        GSet_amount(a);
         GSet_completed(c);
         
     }
-    
+
+    public override int WhenCompletedPoints() {
+        return GSet_points(-1) * GSet_completed(-1);
+    }
+
+    public override bool ConsideredComplete() {
+        if (GSet_completed(-1) > 0) {
+            return true;
+        }
+        return false;
+    }
+
     public override void Display()
     {
-        if(GSet_completed(-1) >= 1) { Console.Write("[X]");}
+        if(ConsideredComplete()) { Console.Write("[X]");}
         else               {Console.Write("[ ] "); }
         
         Console.Write(GSet_name(null)+ " ");
         Console.Write(GSet_description(null) + " ");
-        Console.Write(GSet_completed(-1));
     }
     
     
