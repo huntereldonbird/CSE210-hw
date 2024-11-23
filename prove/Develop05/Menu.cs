@@ -56,22 +56,20 @@ public class Menu
         using (StreamWriter outputFile = new StreamWriter(filename))
         {
 
-            for (int i = 0; i <= _loadedGoals.Count; i++) {
-                // outputFile.WriteLine(_loadedGoals[i].SaveOutput());
+            for (int i = 0; i < _loadedGoals.Count; i++) {
+                outputFile.WriteLine(_loadedGoals[i].SaveOutput());
             }
-            outputFile.WriteLine("JUST TESTING");
-
         }
     }
 
     public void Load()
     {
-        string filename = "SaveFile.txt";
-        string[] lines = System.IO.File.ReadAllLines(filename);
+        String filename = "SaveFile.txt";
+        String[] lines = System.IO.File.ReadAllLines(filename);
 
-        foreach (string line in lines)
+        foreach (String line in lines)
         {
-            string[] parts = line.Split("|");
+            String[] parts = line.Split("|");
 
             String type = parts[0];
             String name = parts[1];
@@ -81,18 +79,22 @@ public class Menu
             int completed = Int32.Parse(parts[5]);
 
             if (type == "Checklist") {
+                Console.WriteLine("Check here");
                 Checklist goal = new Checklist(name, description, points, amount, completed);
                 _loadedGoals.Add(goal);
             }
             if (type == "Eternal") {
+                Console.WriteLine("Ete here");
                 Eternal goal = new Eternal(name, description, points, amount, completed);
                 _loadedGoals.Add(goal);
             }
             if (type == "Vice") {
+                Console.WriteLine("Vic here");
                 Vice goal = new Vice(name, description, points, amount, completed);
                 _loadedGoals.Add(goal);
             }
             if (type == "Simple") {
+                Console.WriteLine("Sim here");
                 Simple goal = new Simple(name, description, points, amount, completed);
                 _loadedGoals.Add(goal);
             }
