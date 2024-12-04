@@ -19,15 +19,18 @@ public class FoodTruck {
 		int userin = int.Parse(Console.ReadLine());
 
 		switch (userin) {
-			
+			// start the register system, hunter
 			case (1):
 
 				break;
 			
+			// star the kitchen system
 			case (2):
 
 				break;
 			
+			
+			// start the expenditure system
 			case (3):
 
 				break;

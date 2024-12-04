@@ -1,7 +1,12 @@
 namespace FinalProject;
 
 public class Expenditure {
-	public void DictionaryMenuItem = new Dictionary<MenuItem, int>() {
+	
+	
+	public Dictionary<MenuItem, int> DictionaryMenuItem = new Dictionary<MenuItem, int>() {
+		
+		// dont forget to change these to the name of the classes when they are created btw, hunter
+		
         {"Oreos", 5},
         {"Snickers", 5},
         {"Butter", 5},
