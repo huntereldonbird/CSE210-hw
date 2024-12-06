@@ -22,6 +22,9 @@ public class FoodTruck {
 			// start the register system, hunter
 			case (1):
 
+
+				Register register = new Register();
+
 				break;
 			
 			// star the kitchen system
