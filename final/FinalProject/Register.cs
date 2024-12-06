@@ -16,7 +16,7 @@ public class Register {
 
 		ConsoleKey keyInfo = Console.ReadKey(true).Key;
 		
-		if(keyInfo == ConsoleKey.Spacebar) {
+		if(keyInfo != ConsoleKey.Clear) {
 
 			Console.WriteLine("TEST");
 
