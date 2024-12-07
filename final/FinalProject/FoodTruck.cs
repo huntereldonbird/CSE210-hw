@@ -1,10 +1,20 @@
 namespace FinalProject;
 
 public class FoodTruck {
+	
+	
+	private Expenditure _expenditure;
+	private Register _register;
+	private KitchenSystem _kitchenSystem;
 
 	
 	// does all of the logic when the food truck is started, hunter
 	public FoodTruck() {
+		
+		_expenditure = new Expenditure();
+		_register = new Register(this);
+		_kitchenSystem = new KitchenSystem();
+		
 
 		Console.Clear();
 		Console.WriteLine("Welcome to the food truck");
@@ -22,8 +32,7 @@ public class FoodTruck {
 		switch (userin) {
 			// start the register system, hunter
 			case (1):
-
-				Register register = new Register();
+				
 
 				break;
 			
@@ -53,6 +62,8 @@ public class FoodTruck {
 	void load_Expenditure_System() {
 		
 	}
-	
-	
+
+	public Expenditure GetExpenditure() {
+		return _expenditure;
+	}
 }
