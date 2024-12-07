@@ -91,8 +91,14 @@ public class Register {
 				// this portion is for the display so that the cashier can select the desired menu option from entres, hunter
 
 				for (int i = 0; i < entres.Count; i++) {
-					Console.WriteLine(entres[i].Display());
+					Console.WriteLine("		" + i + ": " + entres[i].Display());
 				}
+				
+				int entre_choice = int.Parse(Console.ReadLine());
+
+				
+				
+				
 
 				break;
 			case (2):
