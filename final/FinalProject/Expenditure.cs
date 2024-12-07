@@ -21,4 +21,8 @@ public class Expenditure {
 	public Dictionary<MenuItem, int> GetDictionary() {
 		return DictionaryMenuItem;
 	}
+
+    private void change_value(string[MenuItem] args) {
+        
+    }
 }
