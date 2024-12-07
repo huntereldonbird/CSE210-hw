@@ -33,6 +33,7 @@ public class FoodTruck {
 			// start the register system, hunter
 			case (1):
 				
+				_register.BeginUsingRegisterSystem();
 
 				break;
 			
@@ -65,5 +66,9 @@ public class FoodTruck {
 
 	public Expenditure GetExpenditure() {
 		return _expenditure;
+	}
+
+	public void NewTicketCreated(Ticket ticket) {
+		
 	}
 }
