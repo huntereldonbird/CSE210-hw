@@ -16,4 +16,9 @@ public class Expenditure {
         
         // commented everyhing out becuase I couldn't build it sorry, hunter
     };
+
+
+	public Dictionary<MenuItem, int> GetDictionary() {
+		return DictionaryMenuItem;
+	}
 }
