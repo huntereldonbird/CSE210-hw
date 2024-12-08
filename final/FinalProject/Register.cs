@@ -35,6 +35,8 @@ public class Register {
 			
 			_foodTruck.NewTicketCreated(_ticket);
 			
+			
+			
 			BeginUsingRegisterSystem();
 
 		}
@@ -82,6 +84,7 @@ public class Register {
 				List<MenuItem> entres = new List<MenuItem>();
 
 				foreach (var item in _foodTruck.GetExpenditure().GetDictionary()) {
+					
 					if (item.Key.GetMenuType() == MenuItem.MenuType.entre) {
 						entres.Add(item.Key);
 					}
@@ -96,7 +99,7 @@ public class Register {
 				
 				int entre_choice = int.Parse(Console.ReadLine());
 
-				
+				return entres[entre_choice];
 				
 				
 

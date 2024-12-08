@@ -14,6 +14,12 @@ public class Ticket {
 
 
 	}
+
+	public String Display() {
+
+
+		return "Ticket Output here";
+	}
 	
 	
 	private MenuItem[] _menuItems;
