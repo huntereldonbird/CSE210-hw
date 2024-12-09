@@ -9,12 +9,23 @@ public class MenuItem {
 		drink,
 		side,
 	}
-	
+
 	MenuType _menuType; // put this on the actual item with the base.menuType = entre, hunter
 
 	private int _cookTimeinSeconds;
-	
+
 	private float _price = 0;
+
+	private bool _Completed = false;
+
+	public void set_Completed(bool b) {
+		_Completed = b;
+	}
+
+	public bool get_Completed() {
+		return _Completed;
+	}
+	
 
 	public void Set_price(float price) {
 		_price = price;

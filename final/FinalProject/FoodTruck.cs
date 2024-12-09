@@ -77,4 +77,11 @@ public class FoodTruck {
 	public void NewTicketCreated(Ticket ticket) {
 		
 	}
+
+	public Ticket[] GetActiveTickets() {
+
+
+
+		return _tickets;
+	}
 }
