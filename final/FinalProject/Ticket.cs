@@ -49,8 +49,13 @@ public class Ticket {
 
 	private DateTime _created;
 
-	private bool complted;
+	private bool _complted;
 
+	public void Set_Complete(bool b) {
+		_complted = b;
+	}
 
-
+	public bool Get_Complted() {
+		return _complted;
+	}
 }

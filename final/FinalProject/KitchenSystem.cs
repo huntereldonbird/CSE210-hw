@@ -26,12 +26,13 @@ public class KitchenSystem {
 
     }
 
-    public void CheckOnTicket() {
+    public void CheckOnTicket(Ticket ticket) {
+
+        MenuItem[] menuItems = ticket.Get_menu_items();
         
         
-        
-        
+
+
+
     }
-    
-    
 }

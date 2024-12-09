@@ -18,11 +18,10 @@ public class MenuItem {
 
 	private bool _Completed = false;
 
-	public void set_Completed(bool b) {
+	public void Set_Completed(bool b) {
 		_Completed = b;
 	}
-
-	public bool get_Completed() {
+	public bool Get_Completed() {
 		return _Completed;
 	}
 	
