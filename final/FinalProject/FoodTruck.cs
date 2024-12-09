@@ -6,6 +6,9 @@ public class FoodTruck {
 	private Expenditure _expenditure;
 	private Register _register;
 	private KitchenSystem _kitchenSystem;
+	
+	// this is here temporarily, idk what to do with this really will ask later in class, hunter
+	private Ticket[] _tickets;
 
 	
 	// does all of the logic when the food truck is started, hunter

@@ -10,15 +10,14 @@ public class Register {
 		
 	}
 
-
+	// only use this when you are creating a new ticket, hunter
 	public void BeginUsingRegisterSystem() {
 		
 		Console.Clear();
 		
 		Console.WriteLine("Register System:");
-		
-		Console.WriteLine();
-		Console.WriteLine("-----------------");
+
+		Console.WriteLine("Current Orders:");
 		Console.WriteLine();
 		
 		Console.WriteLine("Press enter to start an order.");
@@ -34,6 +33,7 @@ public class Register {
 			Ticket _ticket = new Ticket(order, 0);
 			
 			_foodTruck.NewTicketCreated(_ticket);
+			
 			
 			BeginUsingRegisterSystem();
 
@@ -82,6 +82,7 @@ public class Register {
 				List<MenuItem> entres = new List<MenuItem>();
 
 				foreach (var item in _foodTruck.GetExpenditure().GetDictionary()) {
+					
 					if (item.Key.GetMenuType() == MenuItem.MenuType.entre) {
 						entres.Add(item.Key);
 					}
@@ -91,21 +92,65 @@ public class Register {
 				// this portion is for the display so that the cashier can select the desired menu option from entres, hunter
 
 				for (int i = 0; i < entres.Count; i++) {
-					Console.WriteLine(entres[i].Display());
+					Console.WriteLine("		" + i + ": " + entres[i].Display());
 				}
+				
+				int entre_choice = int.Parse(Console.ReadLine());
+
+				return entres[entre_choice];
+				
+				
 
 				break;
 			case (2):
+				List<MenuItem> sides = new List<MenuItem>();
+
+				foreach (var item in _foodTruck.GetExpenditure().GetDictionary()) {
+					
+					if (item.Key.GetMenuType() == MenuItem.MenuType.side) {
+						sides.Add(item.Key);
+					}
+					
+				}
+
+				for (int i = 0; i < sides.Count; i++) {
+					Console.WriteLine("		" + i + ": " + sides[i].Display());
+				}
+				
+				int sides_choice = int.Parse(Console.ReadLine());
+
+				return sides[sides_choice];
+				
+				
+
 				break;
 			
 			case(3):
+				
+				List<MenuItem> drinks = new List<MenuItem>();
 
+				foreach (var item in _foodTruck.GetExpenditure().GetDictionary()) {
+					
+					if (item.Key.GetMenuType() == MenuItem.MenuType.drink) {
+						drinks.Add(item.Key);
+					}
+					
+				}
+
+				for (int i = 0; i < drinks.Count; i++) {
+					Console.WriteLine("		" + i + ": " + drinks[i].Display());
+				}
+				
+				int drinks_choice = int.Parse(Console.ReadLine());
+
+				return drinks[drinks_choice];
 				
 				break;
 			
 			case(4):
 
 				return null;
+				
 				break;
 			
 			

@@ -48,6 +48,7 @@ public class MenuItem {
 		_menuType = menuType;
 	}
 
+	// basically gets the name...
 	public String Display() {
 
 		return _name;
