@@ -68,7 +68,7 @@ public class Register {
 			
 		Console.WriteLine("Which item are you adding :");
 			
-		Console.WriteLine("		1) Entre");
+		Console.WriteLine("		1) Entré");
 		Console.WriteLine("		2) Side");
 		Console.WriteLine("		3) Drink");
 		Console.WriteLine("		4) Done");
