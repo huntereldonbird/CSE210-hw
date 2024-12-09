@@ -45,6 +45,7 @@ public class FoodTruck {
 
 				KitchenSystem kitchenSystem = new KitchenSystem();
 				
+				
 				break;
 			
 			
@@ -71,6 +72,8 @@ public class FoodTruck {
 		return _expenditure;
 	}
 
+	
+	// This is where the new tickets are created grab them from here, or import them.
 	public void NewTicketCreated(Ticket ticket) {
 		
 	}
