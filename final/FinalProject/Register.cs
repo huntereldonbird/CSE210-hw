@@ -99,9 +99,6 @@ public class Register {
 
 				return entres[entre_choice];
 				
-				
-
-				break;
 			case (2):
 				List<MenuItem> sides = new List<MenuItem>();
 
@@ -120,10 +117,6 @@ public class Register {
 				int sides_choice = int.Parse(Console.ReadLine());
 
 				return sides[sides_choice];
-				
-				
-
-				break;
 			
 			case(3):
 				
@@ -144,14 +137,10 @@ public class Register {
 				int drinks_choice = int.Parse(Console.ReadLine());
 
 				return drinks[drinks_choice];
-				
-				break;
 			
 			case(4):
 
 				return null;
-				
-				break;
 			
 			
 		}
