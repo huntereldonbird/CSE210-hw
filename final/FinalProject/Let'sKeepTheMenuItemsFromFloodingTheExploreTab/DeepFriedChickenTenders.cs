@@ -8,7 +8,7 @@ public class DeepFriedChickenTenders : MenuItem{
         Set_name("Depp Fried Chicken Tenders");
         Set_price(10);
         Set_menuType(MenuType.entre);
-
+        Set_cookTime(20);
     }
 
 }

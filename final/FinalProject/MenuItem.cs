@@ -12,7 +12,7 @@ public class MenuItem {
 	
 	MenuType _menuType; // put this on the actual item with the base.menuType = entre, hunter
 
-	private int _cookTimeinMinutes;
+	private int _cookTimeinSeconds;
 	
 	private float _price = 0;
 
@@ -29,6 +29,10 @@ public class MenuItem {
 
 	public void Set_name(String name) {
 		_name = name;
+	}
+
+	public void Set_cookTime(int time) {
+		_cookTimeinSeconds = time;
 	}
 	
 	private DateTime _startTime; // this is set when it is put into a "fryer", hunter

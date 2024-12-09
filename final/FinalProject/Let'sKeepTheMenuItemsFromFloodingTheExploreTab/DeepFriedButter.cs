@@ -8,7 +8,7 @@ public class DeepFriedButter : MenuItem{
         Set_name("Deep Fried Butter");
         Set_price(10);
         Set_menuType(MenuType.entre);
-
+        Set_cookTime(5);
     }
 
 }
