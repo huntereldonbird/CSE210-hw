@@ -18,6 +18,15 @@ public class MenuItem {
 
 	private bool _Completed = false;
 
+	private DateTime _startcooking;
+
+	public DateTime Get_StartCooking() {
+		return _startcooking;
+	}
+	public void Set_StartCooking(DateTime d) {
+		_startcooking = d;
+	}
+
 	public void Set_Completed(bool b) {
 		_Completed = b;
 	}

@@ -17,8 +17,7 @@ public class KitchenSystem {
     public void UpdateLoop() {
         
         
-        
-        
+        FryerSystem(4);
         
         
         Thread.Sleep(1000);
@@ -26,13 +25,17 @@ public class KitchenSystem {
 
     }
 
-    public void CheckOnTicket(Ticket ticket) {
 
-        MenuItem[] menuItems = ticket.Get_menu_items();
+
+    public void FryerSystem(int a) {
         
         
-
-
-
+        
+        
+        
+        
+        
+        FryerSystem(a -1);
+        
     }
 }
