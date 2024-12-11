@@ -80,10 +80,9 @@ public class FoodTruck {
 	}
 
 	public Ticket[] GetActiveTickets() {
-
-
-
+		
 		return _tickets;
+		
 	}
 
 	public void RemoveTicket(Ticket ticket) { // we need to make sure that when it removes it goes into a completed tickets, or it is saved somehwere else, hunter

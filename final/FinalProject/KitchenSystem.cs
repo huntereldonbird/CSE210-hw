@@ -6,6 +6,8 @@ public class KitchenSystem {
     // consider adding ASCII art as a loading animation when an item is being prepared
 
     private FoodTruck _foodTruck;
+
+    private int _fryers;
     
     public KitchenSystem(FoodTruck foodTruck) {
 
@@ -109,8 +111,7 @@ public class KitchenSystem {
 
             if (doIremove) {
 
-                _foodTruck.RemoveTicket(ticket);
-                
+                _foodTruck.RemoveTicket(ticket); // this removes it
                 
             }
         }
@@ -130,40 +131,47 @@ public class KitchenSystem {
                 foreach (var ticket in tickets) {
 
                     if (!ticket.Get_Complted()) { // if the ticket is completed already forget about it, hunter
-
+                        
                         foreach (var menuItem in ticket.Get_menu_items()) {
+
+                            if (i < 1) { // just as inssurance so that we dont use our negative first fryer, hunter
+                                break;
+                            }
 
                             if (!menuItem.Get_Completed()) { // if the menu item is completed, we can ignore it, hunter
                                 
+<<<<<<< Updated upstream
 
 
 
                                 
                                 
+=======
+                                menuItem.StartCooking();
+                                i--;
+
+>>>>>>> Stashed changes
                             }
                         }
                     }
                 }
-
-
-                i++; // FOR NOW BUT REMOVE LATER !!!!!!
             }
-                
-                
-                
-            
-
-            
 
 
-            
-        
-        
-        
-        
-        
-        
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+        _fryers = availablefryers;    
         Thread.Sleep(1000);
         if (_foodTruck.Closing()) { // if the foodtruck says closing, then the recusion breaks..., hunter
             UpdateLoop(availablefryers);
