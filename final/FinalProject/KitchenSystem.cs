@@ -97,7 +97,9 @@ public class KitchenSystem {
 
                             if (!menuItem.Get_Completed()) { // if the menu item is completed, we can ignore it, hunter
                                 
-                                new Spinner();
+
+
+
                                 
                                 
                                 
