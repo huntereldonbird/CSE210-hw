@@ -10,6 +10,7 @@ public class FoodTruck {
 	// this is here temporarily, idk what to do with this really will ask later in class, hunter
 	private Ticket[] _tickets;
 
+	private bool _running;
 	
 	// does all of the logic when the food truck is started, hunter
 	public FoodTruck() {
@@ -83,5 +84,9 @@ public class FoodTruck {
 
 
 		return _tickets;
+	}
+
+	public bool Closing() {
+		return _running;
 	}
 }

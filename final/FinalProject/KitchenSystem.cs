@@ -12,7 +12,7 @@ public class KitchenSystem {
         _foodTruck = foodTruck;
         
         
-        UpdateLoop();
+        UpdateLoop(4);
     }
 
     
@@ -51,62 +51,84 @@ public class KitchenSystem {
     
     // this loop runs regardless of wheter someone has entered it and is looking into it, hunter
     
-    public void UpdateLoop() {
+    public void UpdateLoop(int lastavailablefryers) {
 
-        int _numFryers = 4;
+        int availablefryers = lastavailablefryers;
+        
 
         
         
         // this containers the fryer logic, and will keep going until all fryers are in use, hunter
         // if you find something that is in "cooking" then add 1 to i, otherwise ignore it..., hunter
         
-        for (int i = 0; i < _numFryers;) {
 
-            Ticket[] tickets = _foodTruck.GetActiveTickets();
+        Ticket[] tickets = _foodTruck.GetActiveTickets();
 
-            foreach (var t in tickets) {
+        foreach (var t in tickets) {
 
-                
-                // if the ticket is completed it shouldn't be in the list in the first place, hunter
-                if (t.Get_Complted()) {
-                    i++;
-                    
+            // firstly, we should check if any items are completed, and thus can be "removed" from fryers
+
+            foreach (var mi in t.Get_menu_items()) {
+
+                if (!mi.Get_Completed()) { // if incomplete
+
+                    DateTime current = DateTime.Now;
+
+                    if (current >= mi.Get_StartTime().AddSeconds(mi.Get_cookTime())) { // if it has been cooking for enough time
+                        
+                        mi.Set_Completed(true);
+                        availablefryers--;
+
+                    } // if it hasnt been cooking for enough time, the same number of fryers are in use, hunter
                 }
+            }
+        }
+        
 
-                else {
-                    foreach (var mi in t.Get_menu_items()) {
+            // after this we should see if we can put anything else in the fryer
 
-                        if (!mi.Get_Completed()) { // if incomplete
-                            
-                            
-                            mi.StartCooking();
+            for (int i = availablefryers; i > 0;) {
 
-                            new Spinner();
+                foreach (var ticket in tickets) {
 
-                            i++; // this fryer is in use ( or it is now), hunter
+                    if (!ticket.Get_Complted()) { // if the ticket is completed already forget about it, hunter
 
+                        foreach (var menuItem in ticket.Get_menu_items()) {
+
+                            if (!menuItem.Get_Completed()) { // if the menu item is completed, we can ignore it, hunter
+                                
+                                new Spinner();
+                                
+                                
+                                
+                            }
                         }
-
                     }
                 }
                 
                 
                 
             }
+                
+                
+                
+            
 
             
 
 
-            i++;
-        }
+            
         
         
         
         
         
+        
+            
         Thread.Sleep(1000);
-        UpdateLoop();
-
+        if (_foodTruck.Closing()) { // if the foodtruck says closing, then the recusion breaks..., hunter
+            UpdateLoop(availablefryers);
+        }
     }
     
 }

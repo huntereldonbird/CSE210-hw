@@ -53,6 +53,10 @@ public class MenuItem {
 	public void Set_cookTime(int time) {
 		_cookTimeinSeconds = time;
 	}
+
+	public int Get_cookTime() {
+		return _cookTimeinSeconds;
+	}
 	
 	private DateTime _startTime; // this is set when it is put into a "fryer", hunter
 
@@ -61,6 +65,10 @@ public class MenuItem {
 
 		_startTime = DateTime.Now;
 
+	}
+
+	public DateTime Get_StartTime() {
+		return _startTime;
 	}
 
 	public MenuType GetMenuType() {
