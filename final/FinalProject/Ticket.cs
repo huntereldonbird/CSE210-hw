@@ -45,6 +45,14 @@ public class Ticket {
 
 	private int _orderid;
 
+	public int Get_orderid() {
+		return _orderid;
+	}
+
+	public void Set_orderid(int orderid) {
+		_orderid = orderid;
+	}
+
 	private String OrderName = ""; // for later if we want to..., hutner
 
 	private DateTime _created;

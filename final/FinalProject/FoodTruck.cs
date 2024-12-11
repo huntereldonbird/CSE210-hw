@@ -16,7 +16,7 @@ public class FoodTruck {
 		
 		_expenditure = new Expenditure();
 		_register = new Register(this);
-		_kitchenSystem = new KitchenSystem();
+		_kitchenSystem = new KitchenSystem(this);
 		
 
 		Console.Clear();
@@ -43,7 +43,7 @@ public class FoodTruck {
 			// star the kitchen system
 			case (2):
 
-				KitchenSystem kitchenSystem = new KitchenSystem();
+				_kitchenSystem.Enter();
 				
 				
 				break;
