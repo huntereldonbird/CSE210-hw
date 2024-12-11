@@ -76,7 +76,7 @@ public class FoodTruck {
 	
 	// This is where the new tickets are created grab them from here, or import them.
 	public void NewTicketCreated(Ticket ticket) {
-		
+		_tickets.Append(ticket);
 	}
 
 	public Ticket[] GetActiveTickets() {
@@ -84,6 +84,23 @@ public class FoodTruck {
 
 
 		return _tickets;
+	}
+
+	public void RemoveTicket(Ticket ticket) { // we need to make sure that when it removes it goes into a completed tickets, or it is saved somehwere else, hunter
+		
+		Ticket[] newarray = new Ticket[0];
+
+		foreach (var thisticket in _tickets) {
+			if (thisticket != ticket) {
+
+				newarray.Append(thisticket);
+
+			}
+		}
+		
+		_tickets = newarray;
+		
+		
 	}
 
 	public bool Closing() {

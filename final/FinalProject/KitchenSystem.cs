@@ -61,6 +61,7 @@ public class KitchenSystem {
         // this containers the fryer logic, and will keep going until all fryers are in use, hunter
         // if you find something that is in "cooking" then add 1 to i, otherwise ignore it..., hunter
         
+        // basically, this function updates the completion status and readds the fryers back if htey are idle, hunter
 
         Ticket[] tickets = _foodTruck.GetActiveTickets();
 
@@ -77,15 +78,47 @@ public class KitchenSystem {
                     if (current >= mi.Get_StartTime().AddSeconds(mi.Get_cookTime())) { // if it has been cooking for enough time
                         
                         mi.Set_Completed(true);
-                        availablefryers--;
+                        availablefryers++;
 
                     } // if it hasnt been cooking for enough time, the same number of fryers are in use, hunter
                 }
             }
         }
         
+        
+        // this entire section is dedicated to removeing completed tickets btw, hunter
+
+        
+
+        foreach (var ticket in tickets) {
+
+            bool doIremove = true; // guilty until proven innocent...... , hunter
+
+            foreach (var mi in ticket.Get_menu_items()) {
+
+                if (!mi.Get_Completed()) {
+                    doIremove = false;
+                }
+            }
+
+
+            if (doIremove) {
+
+                _foodTruck.RemoveTicket(ticket);
+                
+                
+            }
+        }
+
+        
+        
+        
+        
+        
 
             // after this we should see if we can put anything else in the fryer
+            
+            Ticket[] updatedTickets = _foodTruck.GetActiveTickets();
 
             for (int i = availablefryers; i > 0;) {
 
@@ -100,14 +133,13 @@ public class KitchenSystem {
                                 new Spinner();
                                 
                                 
-                                
                             }
                         }
                     }
                 }
-                
-                
-                
+
+
+                i++; // FOR NOW BUT REMOVE LATER !!!!!!
             }
                 
                 
