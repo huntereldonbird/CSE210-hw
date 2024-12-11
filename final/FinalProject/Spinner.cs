@@ -8,14 +8,20 @@ public class Spinner
 
     public String[] AnimationFrames =
     [
-    "░",
-    "▒",
-    "▓"
+    "⣦",
+    "⣮",
+    "⣴",
+    "⣪",
+    "⣤",
+    "⣥",
+    "⣴",
+    "⣦",
+    "⣤"
     ];
     
     
     // iterations would be in reference to the amount of seconds it takes?
-    // General rule, 1 itteration = 3 seconds because we have 3 frames of animation.
+    // General rule, 1 itteration = 9 seconds because we have 9 frames of animation.
     public void Animate(int seconds)
     {
         DateTime endtime = DateTime.Now.AddSeconds(seconds);

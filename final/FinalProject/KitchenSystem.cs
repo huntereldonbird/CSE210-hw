@@ -81,7 +81,7 @@ public class KitchenSystem {
                             
                             mi.StartCooking();
 
-
+                            new Spinner();
 
                             i++; // this fryer is in use ( or it is now), hunter
 
