@@ -140,17 +140,9 @@ public class KitchenSystem {
 
                             if (!menuItem.Get_Completed()) { // if the menu item is completed, we can ignore it, hunter
                                 
-<<<<<<< Updated upstream
-
-
-
-                                
-                                
-=======
                                 menuItem.StartCooking();
                                 i--;
 
->>>>>>> Stashed changes
                             }
                         }
                     }
