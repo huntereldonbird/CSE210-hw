@@ -34,6 +34,11 @@ public class KitchenSystem {
 
                 if (!mi.Get_Completed()) {
                     Console.WriteLine(mi.Display());
+                    Spinner spinner = new Spinner();
+                    spinner.Animate(mi.Get_cookTime());
+                } else {
+                    Console.WriteLine();
+                    Console.Write("⣤");
                 }
                 
                 
