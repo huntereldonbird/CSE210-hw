@@ -3,17 +3,16 @@ using System.Text.Json;
 namespace FinalProject;
 
 public class FoodTruckProcess {
-
-    private Ticket[] _activeTickets;
-
+    
     private Ticket[] _pastTickets;
 
-    private bool closed;
+    private bool closed = false;
 
     public FoodTruckProcess() {
 
         _pastTickets = LoadTickets("active.json");
-        _activeTickets = LoadTickets("active.json");
+        
+        UpdateLoop(4);
 
     }
 
@@ -40,153 +39,111 @@ public class FoodTruckProcess {
         return result;
     }
 
-    public void CloseOutTicket(Ticket ticket) {
+    public Ticket[] CloseOutTicket(Ticket ticket, Ticket[] active_tickets) {
 
-        Ticket[] newarray = new Ticket[0];
+        Ticket[] newtickets = new Ticket[0];
+        
+        foreach (Ticket t in active_tickets) {
 
-        foreach (var thisticket in _activeTickets) {
-            if (thisticket != ticket) {
+            if (t != ticket) {
 
-                newarray.Append(thisticket);
+                newtickets.Append(t);
 
             }
-        }
-		
-        _activeTickets = newarray;
-        
-        _pastTickets.Append(ticket);
-        
-        SaveTickets();
-        
 
-        closed = true;
+        }
+
+        if (!(_pastTickets.Contains(ticket))) {
+            _pastTickets.Append(ticket);
+        }
+        
+        SaveTickets("past.json", _pastTickets);
+
+        return newtickets;
     }
 
 
 
-    public void UpdateLoop2(int lastnumfryers) {
+    public void UpdateLoop(int lastnumfryers) { // this is so I can remake the update loop to remove errors
+        
+        Console.WriteLine("here");
+        System.Diagnostics.Debug.WriteLine("I am using debugging");
+        
+        int rollingfryers = lastnumfryers;
+        
+        // update the current active tickets,
+        // are there any new items that are done cooking that we can mark off the list?
+        // are there any tickets that we can remove from the active queue?
+        // after we have removed all current menu items from use, how many do we have left
+        
+        
+        Ticket[] active_tickets = LoadTickets("active.json");
+
+        foreach (Ticket ticket in active_tickets) {
+            
+            // if the ticket is complete, remove it from the array and work on the next one.
+
+            if (ticket.Get_Complted()) {
+                active_tickets = CloseOutTicket(ticket, active_tickets);
+                continue;
+            }
+
+            // For incomplete tickets, we need to check if any menuitems are done cooking...
+            
+            // first we check if they are already completed, ingore them if they are,
+            // then we need to see if they are started, if they are, we need to check if they are done cooking
+            
+            foreach (var menuitem in ticket.Get_menu_items()) {
+
+                if (!(menuitem.Get_Completed()) || menuitem.Get_if_started()) { // if incomplete
+
+                    if (menuitem.Get_StartTime().AddSeconds(menuitem.Get_cookTime()) >= DateTime.Now) {
+
+                        // if we have been cooking for long enough we are done with the fryer and we can add it back so that we can use it later.
+                        
+                        menuitem.Set_Completed(true);
+                        rollingfryers += 1;
+                    }
+                }
+            }
+            
+        }
         
         
         
-        
-        
-        
-        
+        // Now we need to see how many items we can now begin cooking,
+        // given the number of fryers, how many new menu items can we begin cooking with.
+
+        if (rollingfryers > 4) { // puting this here so that I dont screw something up later, hunter
+            rollingfryers = 4;
+        }
+
+        foreach (var ticket in active_tickets) {
+
+            foreach (var menuitem in ticket.Get_menu_items()) {
+
+                if (!menuitem.Get_Completed() || !menuitem.Get_if_started()) { // if they are incomplete AND they aren't started yet, we should throw them into the fryer
+
+                    if (rollingfryers > 0) { // if we dont have any fryers, we shouldn't cook more.
+                        menuitem.StartCooking();
+                        rollingfryers -= 1;
+                    }
+                }
+            }
+        }
         
         
         
         
         if (!closed) {
-            UpdateLoop2(lastnumfryers);
-        }
-    }
-    
-    
-    public void UpdateLoop(int lastavailablefryers) {
-
-        int availablefryers = lastavailablefryers;
-        
-        Console.WriteLine("Here");
-        
-        
-        // this containers the fryer logic, and will keep going until all fryers are in use, hunter
-        // if you find something that is in "cooking" then add 1 to i, otherwise ignore it..., hunter
-        
-        // basically, this function updates the completion status and readds the fryers back if htey are idle, hunter
-        
-
-        Ticket[] tickets = LoadTickets();
-
-        if (tickets == null) {
-            Thread.Sleep(10000);
-            UpdateLoop(availablefryers);
-            return;
-        }
-
-        foreach (var t in tickets) {
-
-            // firstly, we should check if any items are completed, and thus can be "removed" from fryers
-
-            foreach (var mi in t.Get_menu_items()) {
-
-                if (!mi.Get_Completed()) { // if incomplete
-
-                    DateTime current = DateTime.Now;
-
-                    if (current >= mi.Get_StartTime().AddSeconds(mi.Get_cookTime())) { // if it has been cooking for enough time
-                        
-                        mi.Set_Completed(true);
-                        availablefryers++;
-
-                    } // if it hasnt been cooking for enough time, the same number of fryers are in use, hunter
-                }
-            }
-        }
-        
-        
-        // this entire section is dedicated to removeing completed tickets btw, hunter
-
-        
-
-        foreach (var ticket in tickets) {
-
-            bool doIremove = true; // guilty until proven innocent...... , hunter
-
-            foreach (var mi in ticket.Get_menu_items()) {
-
-                if (!mi.Get_Completed()) {
-                    doIremove = false;
-                }
-            }
-
-
-            if (doIremove) {
-
-                RemoveTicket(ticket); // this removes it
-                
-            }
-        }
-
-        
-        
-        
-        
-        
-
-            // after this we should see if we can put anything else in the fryer
-
-            Ticket[] updatedTickets = LoadTickets();
-
-            for (int i = availablefryers; i > 0;) {
-
-                foreach (var ticket in tickets) {
-
-                    if (!ticket.Get_Complted()) { // if the ticket is completed already forget about it, hunter
-                        
-                        foreach (var menuItem in ticket.Get_menu_items()) {
-
-                            if (i < 1) { // just as inssurance so that we dont use our negative first fryer, hunter
-                                break;
-                            }
-
-                            if (!menuItem.Get_Completed()) { // if the menu item is completed, we can ignore it, hunter
-                                
-                                menuItem.StartCooking();
-                                i--;
-
-                            }
-                        }
-                    }
-                }
-            }
-
+            Thread.Sleep(1000);
+            UpdateLoop(lastnumfryers);
             
-        //_fryers = availablefryers;    
-        
-        
-        Thread.Sleep(1000);
-        if (!closed) { // if the foodtruck says closing, then the recusion breaks..., hunter
-            UpdateLoop(availablefryers);
+        }
+        else {
+            
+            SaveTickets("past.json", _pastTickets);
+            
         }
     }
     

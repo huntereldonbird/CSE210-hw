@@ -9,16 +9,17 @@ class Program
         Task task1 = new Task(() => {
             
             FoodTruckProcess process = new FoodTruckProcess();
+            Console.WriteLine("test");
             
         });
         
         
         
-        //Task task2 = new Task(() => {
+        Task task2 = new Task(() => {
             
-            //FoodTruck _foodtruck = new FoodTruck();
+            FoodTruck _foodtruck = new FoodTruck();
             
-        //});
+        });
         
         task1.Start();
         //task2.Start();

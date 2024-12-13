@@ -23,6 +23,8 @@ public class MenuItem {
 	
 	private DateTime _startTime { get; set; } // this is set when it is put into a "fryer", hunter
 	
+	private bool _started { get; set; } // this is here bcause i was too lazy to find a better way of doing this, hunter
+	
 	private String _name { get; set; }
 
 
@@ -47,13 +49,16 @@ public class MenuItem {
 	public int Get_cookTime() {
 		return _cookTimeinSeconds;
 	}
-	
+
+	public bool Get_if_started() {
+		return _started;
+	}
 	public void StartCooking() {
 
 		_startTime = DateTime.Now;
+		_started = true;
 
 	}
-
 	public DateTime Get_StartTime() {
 		return _startTime;
 	}

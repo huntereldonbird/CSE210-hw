@@ -1,44 +1,32 @@
 namespace FinalProject;
 
 public class Register {
-	
+
 	private FoodTruck _foodTruck;
 
 	public Register(FoodTruck foodTruck) {
-		
+
 		_foodTruck = foodTruck;
-		
+
 	}
 
 	// only use this when you are creating a new ticket, hunter
 	public void BeginUsingRegisterSystem() {
-		
+
 		Console.Clear();
-		
+
 		Console.WriteLine("Register System:");
 
-		Console.WriteLine("Current Orders:");
-		Console.WriteLine();
-		
-		Console.WriteLine("Press enter to start an order.");
 
-		ConsoleKey keyInfo = Console.ReadKey(true).Key;
-		
-		if(keyInfo != ConsoleKey.Clear) {
-			
-			// this basically repeats itself until the condition is met, ie the person at the register has selected either the cancel, or the completed, hunter
+		MenuItem[] order = BuildMenu(null);
 
-			MenuItem[] order = BuildMenu(null);
+		Ticket _ticket = new Ticket(order, 0);
 
-			Ticket _ticket = new Ticket(order, 0);
-			
-			_foodTruck.NewTicketCreated(_ticket);
-			
-			
-			BeginUsingRegisterSystem();
+		_foodTruck.NewTicketCreated(_ticket);
 
-		}
-		
+
+		BeginUsingRegisterSystem();
+
 	}
 
 	
