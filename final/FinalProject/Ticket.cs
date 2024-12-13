@@ -1,4 +1,9 @@
 
+using System.ComponentModel.Design;
+using System.Runtime.InteropServices.JavaScript;
+using System.Xml.XPath;
+using System.Text.Json;
+
 namespace FinalProject;
 using System;
 
@@ -9,7 +14,7 @@ public class Ticket {
 	public Ticket(MenuItem[] menuItems, int id) {
 		
 		_menuItems = menuItems;
-
+		
 		_orderid = id;
 
 		_created = DateTime.Now;
@@ -36,7 +41,9 @@ public class Ticket {
 	private MenuItem[] _menuItems;
 
 	public void add_Menu_item(MenuItem menuItem) {
+		
 		_menuItems.Append(menuItem);
+		
 	}
 
 	public MenuItem[] Get_menu_items() {
@@ -65,5 +72,32 @@ public class Ticket {
 
 	public bool Get_Complted() {
 		return _complted;
+	}
+
+	public String SaveOut() {
+
+		String result = "";
+
+		if (Get_Complted()) {
+			result += "y|";
+		} else {
+			result += "n|";
+		}
+
+		result += _orderid + "|";
+
+		result += OrderName + "|";
+		
+		result += _created.ToString("yyyy-MM-dd HH:mm:ss");
+
+		foreach (MenuItem i in _menuItems) {
+			
+			 
+			
+		}
+		
+		
+		
+		return result;
 	}
 }
