@@ -9,41 +9,31 @@ public class MenuItem {
 		drink,
 		side,
 	}
+	
+	// FOR GIBBONS/AMMON, I sadly needed to include the default getters and setters for the JSon serializer
+	// otherwise I used the getters and setters that I had made, hunter
 
-	MenuType _menuType; // put this on the actual item with the base.menuType = entre, hunter
+	MenuType _menuType { get; set; } // put this on the actual item with the base.menuType = entre, hunter
 
-	private int _cookTimeinSeconds;
+	private int _cookTimeinSeconds { get; set; }
 
-	private float _price = 0;
+	private float _price { get; set; }
 
-	private bool _Completed = false;
+	private bool _completed { get; set; }
+	
+	private DateTime _startTime { get; set; } // this is set when it is put into a "fryer", hunter
+	
+	private String _name { get; set; }
 
-	private DateTime _startcooking;
-
-	public DateTime Get_StartCooking() {
-		return _startcooking;
-	}
-	public void Set_StartCooking(DateTime d) {
-		_startcooking = d;
-	}
 
 	public void Set_Completed(bool b) {
-		_Completed = b;
+		_completed = b;
 	}
 	public bool Get_Completed() {
-		return _Completed;
+		return _completed;
 	}
-	
-
 	public void Set_price(float price) {
 		_price = price;
-	}
-
-	private String _name = "BASE NAME HERE";
-
-
-	public String Get_name() {
-		return _name;
 	}
 
 	public void Set_name(String name) {
@@ -58,9 +48,6 @@ public class MenuItem {
 		return _cookTimeinSeconds;
 	}
 	
-	private DateTime _startTime; // this is set when it is put into a "fryer", hunter
-
-
 	public void StartCooking() {
 
 		_startTime = DateTime.Now;
@@ -78,8 +65,8 @@ public class MenuItem {
 	public void Set_menuType(MenuType menuType) {
 		_menuType = menuType;
 	}
-
-	// basically gets the name...
+	
+	// for display purposes
 	public String Display() {
 
 		return _name;

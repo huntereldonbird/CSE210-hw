@@ -1,0 +1,11 @@
+﻿{
+  "type" : "entre",
+  "completion" : true,
+  "id" : 1,
+  "CreationData" : 10,
+  "MenuItems" : [
+    "BajaBlast",
+    "DeepFriendButter"
+  ]
+  
+}

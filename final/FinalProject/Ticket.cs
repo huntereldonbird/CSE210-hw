@@ -1,8 +1,8 @@
-
 using System.ComponentModel.Design;
 using System.Runtime.InteropServices.JavaScript;
 using System.Xml.XPath;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace FinalProject;
 using System;
@@ -22,6 +22,26 @@ public class Ticket {
 
 	}
 
+	[JsonConstructor]
+	public Ticket() {
+		
+	}
+	
+	// FOR GIBBONS/AMMON, I sadly needed to include the default getters and setters for the JSon serializer
+	// otherwise I used the getters and setters that I had made, hunter
+	
+	private MenuItem[] _menuItems { get; set; }
+	
+	private int _orderid { get; set; }
+	
+	private String OrderName { get; set; } // for later if we want to..., hutner
+
+	private DateTime _created { get; set; }
+
+	private bool _complted { get; set; }
+
+
+
 	public String Display() {
 
 		String result = "" + _orderid + " : [ " ;
@@ -36,9 +56,6 @@ public class Ticket {
 
 		return result;
 	}
-	
-	
-	private MenuItem[] _menuItems;
 
 	public void add_Menu_item(MenuItem menuItem) {
 		
@@ -49,9 +66,7 @@ public class Ticket {
 	public MenuItem[] Get_menu_items() {
 		return _menuItems;
 	}
-
-	private int _orderid;
-
+	
 	public int Get_orderid() {
 		return _orderid;
 	}
@@ -59,13 +74,6 @@ public class Ticket {
 	public void Set_orderid(int orderid) {
 		_orderid = orderid;
 	}
-
-	private String OrderName = ""; // for later if we want to..., hutner
-
-	private DateTime _created;
-
-	private bool _complted;
-
 	public void Set_Complete(bool b) {
 		_complted = b;
 	}
@@ -73,31 +81,5 @@ public class Ticket {
 	public bool Get_Complted() {
 		return _complted;
 	}
-
-	public String SaveOut() {
-
-		String result = "";
-
-		if (Get_Complted()) {
-			result += "y|";
-		} else {
-			result += "n|";
-		}
-
-		result += _orderid + "|";
-
-		result += OrderName + "|";
-		
-		result += _created.ToString("yyyy-MM-dd HH:mm:ss");
-
-		foreach (MenuItem i in _menuItems) {
-			
-			 
-			
-		}
-		
-		
-		
-		return result;
-	}
+	
 }

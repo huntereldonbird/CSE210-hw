@@ -14,14 +14,16 @@ class Program
         
         
         
-        Task task2 = new Task(() => {
+        //Task task2 = new Task(() => {
             
-            FoodTruck _foodtruck = new FoodTruck();
+            //FoodTruck _foodtruck = new FoodTruck();
             
-        });
+        //});
         
         task1.Start();
-        task2.Start();
+        //task2.Start();
+        
+        FoodTruck foodTruck = new FoodTruck(); // WIll have to see if I even need to have a task..., hunter
         
     }
 }

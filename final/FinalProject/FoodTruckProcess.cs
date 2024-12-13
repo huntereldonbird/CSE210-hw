@@ -1,63 +1,47 @@
+using System.Text.Json;
+
 namespace FinalProject;
 
 public class FoodTruckProcess {
 
     private Ticket[] _activeTickets;
 
-    private Ticket[] PastTickets;
+    private Ticket[] _pastTickets;
 
     private bool closed;
 
+    public FoodTruckProcess() {
 
-    public void SaveTickets(String location) {
+        _pastTickets = LoadTickets("active.json");
+        _activeTickets = LoadTickets("active.json");
+
+    }
+
+    // save the arrays to "memory"
+    public void SaveTickets(String location, Ticket[] tickets) {
         
-        Console.Clear();
-        
-        String filename = "PastTickets.txt";
-        using (StreamWriter outputFile = new StreamWriter(filename))
-        {
-            
-            for (int i = 0; i < PastTickets.Length; i++) {
-                outputFile.WriteLine(PastTickets[i].SaveOut());
-            }
-            
-        }
+        var options = new JsonSerializerOptions();
+        options.WriteIndented = true;
+
+        string tjson = JsonSerializer.Serialize<Ticket[]>(tickets, options);
+
+        File.WriteAllText(location, tjson);
         
     }
 
-    public Ticket[] LoadTickets() {
+    
+    // used to get tickets from "memory" or to load them from past tickets
+    public Ticket[] LoadTickets(String location) {
 
-        String filename = "SaveFile.txt";
-        String[] lines = System.IO.File.ReadAllLines(filename);
+        var ticket = File.ReadAllText(location);
+        
+        Ticket[] result = JsonSerializer.Deserialize<Ticket[]>(ticket);
 
-        foreach (String line in lines) {
-            String[] parts = line.Split("|");
-
-            String type = parts[0];
-            String name = parts[1];
-            String description = parts[2];
-            int points = Int32.Parse(parts[3]);
-            int amount = Int32.Parse(parts[4]);
-            int completed = Int32.Parse(parts[5]);
-
-
-        }
-
-        return null;
+        return result;
     }
 
     public void CloseOutTicket(Ticket ticket) {
 
-        RemoveTicket(ticket);
-
-        PastTickets.Append(ticket);
-        
-
-        closed = true;
-    }
-    
-    public void RemoveTicket(Ticket ticket) {
-		
         Ticket[] newarray = new Ticket[0];
 
         foreach (var thisticket in _activeTickets) {
@@ -70,6 +54,12 @@ public class FoodTruckProcess {
 		
         _activeTickets = newarray;
         
+        _pastTickets.Append(ticket);
+        
+        SaveTickets();
+        
+
+        closed = true;
     }
 
 
