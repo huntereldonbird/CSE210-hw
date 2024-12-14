@@ -58,11 +58,8 @@ public class FoodTruckProcess {
 
         
         int rollingfryers = lastnumfryers;
-       
 
-        // Now we need to see how many items we can now begin cooking,
-        // given the number of fryers, how many new menu items can we begin cooking with.
-
+        
         
         Ticket[] working_tickets = LoadTickets("./tickets/");
 
@@ -78,8 +75,7 @@ public class FoodTruckProcess {
                     
                     mi.StartCooking();
                     rollingfryers -= 1;
-                    Console.WriteLine("Started: " + mi.Display());
-
+                    
                 }
                 
                 //Console.Write("No Need to Cook!");
