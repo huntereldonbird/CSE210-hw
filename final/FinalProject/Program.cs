@@ -9,7 +9,6 @@ class Program
         Task task1 = new Task(() => {
             
             FoodTruckProcess process = new FoodTruckProcess();
-            Console.WriteLine("test");
             
         });
         
