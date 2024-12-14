@@ -21,8 +21,6 @@ public class MenuItem {
 	public int _cookTimeinSeconds { get; set; }
 
 	public float _price { get; set; }
-
-	public bool _completed { get; set; }
 	
 	public DateTime _startTime { get; set; } // this is set when it is put into a "fryer", hunter
 	
@@ -37,14 +35,28 @@ public class MenuItem {
 	}
 
 	
-
-
-	public void Set_Completed(bool b) {
-		_completed = b;
-	}
+	
 	public bool Get_Completed() {
-		return _completed;
+
+		bool result = false;
+
+		if (Get_if_started()) {
+
+			DateTime date = Get_StartTime().AddSeconds(Get_cookTime());
+			
+			var output = DateTime.Compare(DateTime.Now, date);
+
+			if (output > 0) {
+				result = true;
+			}
+			
+		}
+
+		return result;
 	}
+	
+	
+	
 	public void Set_price(float price) {
 		_price = price;
 	}

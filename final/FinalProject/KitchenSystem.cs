@@ -27,17 +27,19 @@ public class KitchenSystem {
         Console.WriteLine("Kitchen System : ");
 
         foreach (var ticket in _foodTruck.LoadTickets()) {
+            
             Console.WriteLine("-----------------------");
             Console.WriteLine(ticket.Display());
+<<<<<<< Updated upstream
             //maybe here???
             Spinner spinner = new Spinner();
             spinner.Animate(7);           
+=======
+>>>>>>> Stashed changes
             
         }
         
-            Console.WriteLine("-----------------------");
-        
-
+        Console.WriteLine("-----------------------");
 
         Console.WriteLine("c : refresh, q : quit");
 

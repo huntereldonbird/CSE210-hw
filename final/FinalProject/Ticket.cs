@@ -47,7 +47,7 @@ public class Ticket {
 
 		String result = "" + _orderid + " : [ " ;
 
-		foreach (MenuItem i in _menuItems) {
+		foreach (MenuItem i in Get_menu_items()) {
 
 			if (i.Get_Completed()) {
 				result += "\u2713 : " + i.Display() + ", ";

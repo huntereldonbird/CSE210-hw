@@ -6,7 +6,8 @@ class Program
 {
     static void Main(string[] args) {
         
-        THIS();
+        
+        Console.WriteLine(DateTime.Now.ToString());
         
     }
 

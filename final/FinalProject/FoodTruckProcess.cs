@@ -48,30 +48,21 @@ public class FoodTruckProcess {
 
         SaveTickets("./past/" + ticket.Get_orderid().ToString(), ticket);
         
-        File.Delete(@"./tickets/" + ticket.Get_orderid().ToString());
+        File.Delete("./tickets/" + ticket.Get_orderid().ToString());
 
     }
 
 
 
     public void UpdateLoop(int lastnumfryers) { // this is so I can remake the update loop to remove errors
-        
-        Console.Write("here1");
 
         
         int rollingfryers = lastnumfryers;
-        
-        // update the current active tickets,
-        // are there any new items that are done cooking that we can mark off the list?
-        // are there any tickets that we can remove from the active queue?
-        // after we have removed all current menu items from use, how many do we have left
-        
-        
-        Ticket[] current_tickets = LoadTickets("./tickets/");
+       
 
+<<<<<<< Updated upstream
         foreach (Ticket ticket in current_tickets) {
-            
-            Console.Write("here3");
+
 
 
             // if the ticket is complete, remove it from the array and work on the next one.
@@ -122,31 +113,29 @@ public class FoodTruckProcess {
 
 
             // Now we need to see how many items we can now begin cooking,
+=======
+        // Now we need to see how many items we can now begin cooking,
+>>>>>>> Stashed changes
         // given the number of fryers, how many new menu items can we begin cooking with.
-        
-        Console.Write("here9");
 
         
         Ticket[] working_tickets = LoadTickets("./tickets/");
 
-        Console.Write("here10");
+        for (int i = 0; i < working_tickets.Length; i++) {
 
-        int allowance = 5;
+            MenuItem[] menuItems = working_tickets[i].Get_menu_items();
 
-        for (int i = 0; i < allowance; i++) { // looks 5 tickets deep
-            
-            Console.Write("here11");
-            
-            if(i > working_tickets.Length) { continue; }
-
-            foreach (var menuItem in working_tickets[i].Get_menu_items()) {
+            foreach (var mi in menuItems) {
                 
-                Console.WriteLine(working_tickets[i].Display());
+                if(rollingfryers < 0){ continue; }
 
-
-                if (!menuItem.Get_Completed() && menuItem.Get_if_started()) {
+                if (!mi.Get_if_started()) {
                     
+                    mi.StartCooking();
+                    rollingfryers -= 1;
+                    Console.WriteLine("Started: " + mi.Display());
 
+<<<<<<< Updated upstream
                     if (menuItem.Get_StartTime().AddSeconds(menuItem.Get_cookTime()) <= DateTime.Now) {
                         
                         menuItem.Set_Completed(true);
@@ -156,12 +145,17 @@ public class FoodTruckProcess {
 
                     }
                     
+=======
+>>>>>>> Stashed changes
                 }
+                
+                //Console.Write("No Need to Cook!");
+                    
+                
             }
+
         }
         
-            
-        Console.Write("here7");
 
 
         foreach (var ticket in working_tickets) {
@@ -170,16 +164,13 @@ public class FoodTruckProcess {
             
         }
         
-            
-            
-        Console.Write("here");
         
         
         
         
         if (!closed) {
             Thread.Sleep(1000);
-            UpdateLoop(lastnumfryers);
+            UpdateLoop(rollingfryers);
             
         }
         
