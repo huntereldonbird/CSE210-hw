@@ -1,0 +1,24 @@
+{
+  "_menuItems": [
+    {
+      "_cookTimeinSeconds": 20,
+      "_price": 10,
+      "_completed": false,
+      "_startTime": "0001-01-01T00:00:00",
+      "_started": false,
+      "_name": "Depp Fried Chicken Tenders"
+    },
+    {
+      "_cookTimeinSeconds": 0,
+      "_price": 10,
+      "_completed": false,
+      "_startTime": "0001-01-01T00:00:00",
+      "_started": false,
+      "_name": "water"
+    }
+  ],
+  "_orderid": 2607903,
+  "OrderName": null,
+  "_created": "2024-12-14T15:26:21.5898332-07:00",
+  "_complted": false
+}

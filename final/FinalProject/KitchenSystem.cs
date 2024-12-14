@@ -29,7 +29,9 @@ public class KitchenSystem {
         foreach (var ticket in _foodTruck.LoadTickets()) {
             Console.WriteLine("-----------------------");
             Console.WriteLine(ticket.Display());
-            
+            //maybe here???
+            Spinner spinner = new Spinner();
+            spinner.Animate(7);           
             
         }
         

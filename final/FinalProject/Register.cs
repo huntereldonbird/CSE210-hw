@@ -65,18 +65,33 @@ public class Register {
 
 public MenuItem AddToOrder(){
 			
-		Console.WriteLine("Which item are you adding :");
-			
-		Console.WriteLine("		1) Entré");
-		Console.WriteLine("		2) Side");
-		Console.WriteLine("		3) Drink");
-		Console.WriteLine("		4) Done");
 		
-		int choice = int.Parse(Console.ReadLine());
+		// bool validInput = true;
+		string choice = "";
+		// while (validInput) {
+
+			Console.WriteLine("Which item are you adding :");
+			
+			Console.WriteLine("		1) Entré");
+			Console.WriteLine("		2) Side");
+			Console.WriteLine("		3) Drink");
+			Console.WriteLine("		4) Done");
+		
+			choice = Console.ReadLine();
+
+			if (!string.IsNullOrEmpty(Convert.ToString(choice))) {
+				if (Convert.ToInt32(choice) > 4 || Convert.ToInt32(choice) < 0) {
+					Console.WriteLine("Please enter a number from 1 to 4");
+					return AddToOrder();
+				}
+			}
+		// }
+
+	
 
 		switch (choice) {
 			
-			case(1): // if they want entres, iterate over them and display each one of them out. we will keep track of them in an index so when a choice is made we can just grab it, hunter
+			case("1"): // if they want entres, iterate over them and display each one of them out. we will keep track of them in an index so when a choice is made we can just grab it, hunter
 
 				List<MenuItem> entres = new List<MenuItem>();
 
@@ -98,7 +113,7 @@ public MenuItem AddToOrder(){
 
 				return entres[entre_choice];
 				
-			case (2):
+			case ("2"):
 				List<MenuItem> sides = new List<MenuItem>();
 
 				foreach (var item in _foodTruck.GetExpenditure().GetDictionary()) {
@@ -117,7 +132,7 @@ public MenuItem AddToOrder(){
 
 				return sides[sides_choice];
 			
-			case(3):
+			case("3"):
 				
 				List<MenuItem> drinks = new List<MenuItem>();
 
@@ -137,7 +152,7 @@ public MenuItem AddToOrder(){
 
 				return drinks[drinks_choice];
 			
-			case(4):
+			case("4"):
 
 				return null;
 			

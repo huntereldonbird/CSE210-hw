@@ -102,9 +102,6 @@ public class FoodTruckProcess {
                     
                     if (!menuitem.Get_Completed() && menuitem.Get_if_started()) { // if incomplete & started already, 
 
-                        Spinner spinner = new Spinner();
-                        spinner.Animate(7);
-
                         if (menuitem.Get_StartTime().AddSeconds(menuitem.Get_cookTime()) > DateTime.Now) { // if cooking is completed
 
                             menuitem.Set_Completed(true);
@@ -150,7 +147,7 @@ public class FoodTruckProcess {
                 if (!menuItem.Get_Completed() && menuItem.Get_if_started()) {
                     
 
-                    if (menuItem.Get_StartTime().AddSeconds(menuItem.Get_cookTime()) < DateTime.Now) {
+                    if (menuItem.Get_StartTime().AddSeconds(menuItem.Get_cookTime()) <= DateTime.Now) {
                         
                         menuItem.Set_Completed(true);
                         rollingfryers -= 1;
