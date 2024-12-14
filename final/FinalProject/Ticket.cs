@@ -83,8 +83,20 @@ public class Ticket {
 		_complted = b;
 	}
 
+	
+	// if any ticket is not completed, then the ticket isnt done, otherwise it is completed.
 	public bool Get_Complted() {
-		return _complted;
+
+		bool result = true;
+
+		foreach (var menuitem in Get_menu_items()) {
+
+			if (!menuitem.Get_Completed()) {
+				result = false;
+			}
+		}
+
+		return result;
 	}
 	
 }

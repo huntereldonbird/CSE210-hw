@@ -42,11 +42,11 @@ public class FoodTruckProcess {
         return result.ToArray();
     }
 
-    public Ticket[] CloseOutTicket() {
+    public void CloseOutTicket(Ticket ticket) {
 
-        Ticket[] tickets = LoadTickets("./tickets/");
-
-
+        SaveTickets("./past/" + ticket.Get_orderid().ToString(), ticket);
+        
+        File.Delete(@"./tickets/" + ticket.Get_orderid().ToString());
 
     }
 
@@ -62,75 +62,87 @@ public class FoodTruckProcess {
         // after we have removed all current menu items from use, how many do we have left
         
         
-        Ticket[] active_tickets = LoadTickets("active.json");
+        Ticket[] current_tickets = LoadTickets("./tickets/");
 
-        foreach (Ticket ticket in active_tickets) {
-            
+        foreach (Ticket ticket in current_tickets) {
+
             // if the ticket is complete, remove it from the array and work on the next one.
 
             if (ticket.Get_Complted()) {
-                active_tickets = CloseOutTicket(ticket, active_tickets);
-                continue;
+                CloseOutTicket(ticket);
             }
 
-            // For incomplete tickets, we need to check if any menuitems are done cooking...
+        }
+
+        // For incomplete tickets, we need to check if any menuitems are done cooking...
             
             // first we check if they are already completed, ingore them if they are,
             // then we need to see if they are started, if they are, we need to check if they are done cooking
             
-            foreach (var menuitem in ticket.Get_menu_items()) {
+            
+            Ticket[] active_tickets = LoadTickets("./tickets/");
+            
+            foreach (var ticket in active_tickets) {
+                
+                foreach (var menuitem in ticket.Get_menu_items()) {
 
-                if (!(menuitem.Get_Completed()) || menuitem.Get_if_started()) { // if incomplete
+                    // we only need to check items that are started, have their time over, and are not considered complteded. then we can get a fryer back from them.
+                    //if they are completed, the fryer is already returned, and if they arent started, they aren't important in this step
+                    
+                    if (!menuitem.Get_Completed() && menuitem.Get_if_started()) { // if incomplete & started already, 
 
-                    if (menuitem.Get_StartTime().AddSeconds(menuitem.Get_cookTime()) >= DateTime.Now) {
+                        if (menuitem.Get_StartTime().AddSeconds(menuitem.Get_cookTime()) > DateTime.Now) { // if cooking is completed
 
-                        // if we have been cooking for long enough we are done with the fryer and we can add it back so that we can use it later.
-                        
-                        menuitem.Set_Completed(true);
-                        rollingfryers += 1;
+                            menuitem.Set_Completed(true);
+                            rollingfryers += 1;
+
+                            // this means that we take the meal out of the fryer and return the number back so we can use it in the next step
+                        }
                     }
                 }
+
             }
-            
-        }
-        
-        
-        
-        // Now we need to see how many items we can now begin cooking,
+
+
+
+
+
+            // Now we need to see how many items we can now begin cooking,
         // given the number of fryers, how many new menu items can we begin cooking with.
 
         if (rollingfryers > 4) { // puting this here so that I dont screw something up later, hunter
             rollingfryers = 4;
         }
+        
+        Ticket[] here_tickets = LoadTickets("./tickets/");
 
-        foreach (var ticket in active_tickets) {
+        foreach (var ticket in here_tickets) {
+            
+            if(rollingfryers < 1){ return; } // safety measures becuase im lazy, hunter
 
-            foreach (var menuitem in ticket.Get_menu_items()) {
+            foreach (var menuItem in ticket.Get_menu_items()) {
 
-                if (!menuitem.Get_Completed() || !menuitem.Get_if_started()) { // if they are incomplete AND they aren't started yet, we should throw them into the fryer
+                if(rollingfryers < 1){ return; } // safety measures becuase im lazy, hunter
 
-                    if (rollingfryers > 0) { // if we dont have any fryers, we shouldn't cook more.
-                        menuitem.StartCooking();
-                        rollingfryers -= 1;
-                    }
+                if (!menuItem.Get_Completed() && !menuItem.Get_if_started()) { // if it is neither complete, nor begun. (basically hasnt started cooking yet...)
+                    
+                    menuItem.StartCooking();
+                    rollingfryers--;
+
+                    return;
+
                 }
             }
         }
         
         
         
-        
         if (!closed) {
             Thread.Sleep(1000);
-            SaveTickets("active.json", active_tickets);
             UpdateLoop(lastnumfryers);
             
         }
-        else {
-            
-            SaveTickets("past.json", _pastTickets);
-            
-        }
+        
     }
     
     

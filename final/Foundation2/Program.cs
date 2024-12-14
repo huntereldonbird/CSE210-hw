@@ -1,9 +1,10 @@
 using System;
+using Foundation2;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Foundation2 World!");
+        tester something = new tester();
     }
 }
