@@ -78,48 +78,35 @@ public class FoodTruck {
 	
 	// This is where the new tickets are created grab them from here, or import them.
 	public void NewTicketCreated(Ticket ticket) {
-
-		Ticket[] tmp = LoadTickets("active.json");
-
-		if (tmp != Array.Empty<Ticket>()) {
-			tmp = new Ticket[1] {
-				ticket
-			};
-		}
 		
-		Console.WriteLine(ticket.Get_menu_items()[0].Display());
+		Console.WriteLine(ticket.Display());
 
-		tmp.Append(ticket);
-
-		SaveTickets("active.json", tmp);
+		SaveTickets("active.json", ticket);
 
 	}
 	
-	public Ticket[] LoadTickets(String location) {
+	public Ticket[] LoadTickets() {
 
-		var ticket = File.ReadAllText(location);
-        
-		if (ticket == String.Empty) {
-			return new Ticket[0];
+		List<Ticket> result = new List<Ticket>();
+
+		var files = Directory.GetFiles(@"./tickets", "*.json");
+
+		foreach (var file in files) {
+			Ticket ticket = JsonSerializer.Deserialize<Ticket>(File.ReadAllText(file));
+			result.Add(ticket);
 		}
-        
-		TicketSaveFormat saveFormat = JsonSerializer.Deserialize<TicketSaveFormat>(ticket);
 
-		Ticket[] result = saveFormat.Get();
-
-		return result;
+		return result.ToArray();
 	}
 	
-	public void SaveTickets(String location, Ticket[] tickets) {
-        
-		TicketSaveFormat saveFormat = new TicketSaveFormat(tickets);
+	public void SaveTickets(String location, Ticket ticket) {
         
 		var options = new JsonSerializerOptions();
 		options.WriteIndented = true;
 
-		string tjson = JsonSerializer.Serialize<TicketSaveFormat>(saveFormat, options);
+		string tjson = JsonSerializer.Serialize<Ticket>(ticket, options);
 
-		File.WriteAllText(location, tjson);
+		File.WriteAllText("./tickets/" + ticket.Get_orderid().ToString() + ".json", tjson);
         
 	}
 

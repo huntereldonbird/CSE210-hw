@@ -19,36 +19,37 @@ public class KitchenSystem {
     
     // this is the area for the code when someone actually enters the code from the foodtruck menu, hunter
     // Only incude visuals and controls from here please...
-    
+
     public void BeginSession() {
         
-        Console.WriteLine("Current Orders");
+        Console.Clear();
+        
+        Console.WriteLine("Kitchen System : ");
 
-        foreach (var ticket in _foodTruck.LoadTickets("active.json")) {
+        foreach (var ticket in _foodTruck.LoadTickets()) {
+            Console.WriteLine("-----------------------");
+            Console.WriteLine(ticket.Display());
             
-            Console.WriteLine("Ticket : " + ticket.Get_orderid());
             
-            // if you wanted to include time to complete the order it would go here btw, hunter
-            
-            foreach (var mi in ticket.Get_menu_items()) {
-
-                if (!mi.Get_Completed()) {
-                    Console.WriteLine(mi.Display());
-                    Spinner spinner = new Spinner();
-                    spinner.Animate(mi.Get_cookTime());
-                } else {
-                    Console.WriteLine();
-                    Console.Write("⣤");
-                }
-                
-                
-                
-            }
-            
-            Console.WriteLine(" ---------- ");
         }
         
+            Console.WriteLine("-----------------------");
         
-    }
-    
+
+
+        Console.WriteLine("c : refresh, q : quit");
+
+        string userin = Console.ReadLine();
+
+        switch (userin) {
+			
+            case("c"):
+                BeginSession();
+                break;
+            case("q"):
+                Console.Clear();
+                break;
+        }
+    }   
+
 }

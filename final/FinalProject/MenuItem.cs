@@ -18,17 +18,17 @@ public class MenuItem {
 
 	MenuType _menuType { get; set; } // put this on the actual item with the base.menuType = entre, hunter
 
-	private int _cookTimeinSeconds { get; set; }
+	public int _cookTimeinSeconds { get; set; }
 
-	private float _price { get; set; }
+	public float _price { get; set; }
 
-	private bool _completed { get; set; }
+	public bool _completed { get; set; }
 	
-	private DateTime _startTime { get; set; } // this is set when it is put into a "fryer", hunter
+	public DateTime _startTime { get; set; } // this is set when it is put into a "fryer", hunter
 	
-	private bool _started { get; set; } // this is here bcause i was too lazy to find a better way of doing this, hunter
+	public bool _started { get; set; } // this is here bcause i was too lazy to find a better way of doing this, hunter
 	
-	private String _name { get; set; }
+	public String _name { get; set; }
 
 	
 	[JsonConstructor]

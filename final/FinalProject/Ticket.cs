@@ -31,16 +31,15 @@ public class Ticket {
 	
 	// FOR GIBBONS/AMMON, I sadly needed to include the default getters and setters for the JSon serializer
 	// otherwise I used the getters and setters that I had made, hunter
+	public MenuItem[] _menuItems { get; set; }
 	
-	private MenuItem[] _menuItems { get; set; }
+	public int _orderid { get; set; }
 	
-	private int _orderid { get; set; }
-	
-	private String OrderName { get; set; } // for later if we want to..., hutner
+	public String OrderName { get; set; } // for later if we want to..., hutner
 
-	private DateTime _created { get; set; }
+	public DateTime _created { get; set; }
 
-	private bool _complted { get; set; }
+	public bool _complted { get; set; }
 
 
 
@@ -50,8 +49,12 @@ public class Ticket {
 
 		foreach (MenuItem i in _menuItems) {
 
-			result += "" + i.Display() + ", ";
-
+			if (i.Get_Completed()) {
+				result += "\u2713 : " + i.Display() + ", ";
+			}
+			else {
+				result += "X : " + i.Display() + ", ";
+			}
 		}
 		
 		result += "]";

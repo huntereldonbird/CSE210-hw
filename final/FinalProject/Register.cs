@@ -48,7 +48,7 @@ public class Register {
 
 		}
 
-		Console.WriteLine("c : continue, q = quit");
+		Console.WriteLine("c : continue, q : quit");
 
 		string userin = Console.ReadLine();
 

@@ -5,71 +5,49 @@ namespace FinalProject;
 
 // this is the engine of the food truck, it is what keeps track of everything.
 public class FoodTruckProcess {
-    
-    private Ticket[] _pastTickets;
 
     private bool closed = false;
 
     public FoodTruckProcess() {
 
-        _pastTickets = LoadTickets("active.json");
-        
         UpdateLoop(4);
 
     }
 
     // save the arrays to "memory"
-    public void SaveTickets(String location, Ticket[] tickets) {
-        
-        TicketSaveFormat saveFormat = new TicketSaveFormat(tickets);
+    public void SaveTickets(String location, Ticket ticket) {
         
         var options = new JsonSerializerOptions();
         options.WriteIndented = true;
 
-        string tjson = JsonSerializer.Serialize<TicketSaveFormat>(saveFormat, options);
+        string tjson = JsonSerializer.Serialize<Ticket>(ticket, options);
 
-        File.WriteAllText(location, tjson);
+        File.WriteAllText(location + ticket.Get_orderid().ToString() + ".json", tjson);
         
     }
 
     
     // used to get tickets from "memory" or to load them from past tickets
-    public Ticket[] LoadTickets(String location) {
+    public Ticket[] LoadTickets(String directory) {
 
-        var ticket = File.ReadAllText(location);
-        
-        if (ticket == String.Empty) {
-            return new Ticket[0];
+        List<Ticket> result = new List<Ticket>();
+
+        var files = Directory.GetFiles(@directory, "*.json");
+
+        foreach (var file in files) {
+            Ticket ticket = JsonSerializer.Deserialize<Ticket>(File.ReadAllText(file));
+            result.Add(ticket);
         }
-        
-        TicketSaveFormat saveFormat = JsonSerializer.Deserialize<TicketSaveFormat>(ticket);
 
-        Ticket[] result = saveFormat.Get();
-
-        return result;
+        return result.ToArray();
     }
 
-    public Ticket[] CloseOutTicket(Ticket ticket, Ticket[] active_tickets) {
+    public Ticket[] CloseOutTicket() {
 
-        Ticket[] newtickets = new Ticket[0];
-        
-        foreach (Ticket t in active_tickets) {
+        Ticket[] tickets = LoadTickets("./tickets/");
 
-            if (t != ticket) {
 
-                newtickets.Append(t);
 
-            }
-
-        }
-
-        if (!(_pastTickets.Contains(ticket))) {
-            _pastTickets.Append(ticket);
-        }
-        
-        SaveTickets("past.json", _pastTickets);
-
-        return newtickets;
     }
 
 
