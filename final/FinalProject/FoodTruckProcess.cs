@@ -142,10 +142,9 @@ public class FoodTruckProcess {
                 }
             }
 
-            foreach (var tickets in working_tickets) {
+            foreach (var ticket in working_tickets) {
                 
-                SaveTickets("./tickets/");
-                
+                SaveTickets("./tickets/", ticket);
                 
             }
             
