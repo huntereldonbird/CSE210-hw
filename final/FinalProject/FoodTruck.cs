@@ -22,8 +22,12 @@ public class FoodTruck {
 		
 		BeginSession();
 		
+		
+		
 	}
 
+	
+	
 	public void BeginSession() {
 		Console.Clear();
 		Console.WriteLine("Welcome to the food truck");

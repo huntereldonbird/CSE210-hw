@@ -1,6 +1,8 @@
 using System.Text.Json;
 
 namespace FinalProject;
+using System;
+using System.Text.Json;
 
 
 // this is the engine of the food truck, it is what keeps track of everything.
@@ -100,7 +102,6 @@ public class FoodTruckProcess {
                         }
                     }
                 }
-
             }
 
 
@@ -114,26 +115,44 @@ public class FoodTruckProcess {
             rollingfryers = 4;
         }
         
-        Ticket[] here_tickets = LoadTickets("./tickets/");
+        Console.Write("here btw");
 
-        foreach (var ticket in here_tickets) {
-            
-            if(rollingfryers < 1){ return; } // safety measures becuase im lazy, hunter
+        Ticket[] working_tickets = LoadTickets("./tickets/");
 
-            foreach (var menuItem in ticket.Get_menu_items()) {
+            while (rollingfryers > 0) {
 
-                if(rollingfryers < 1){ return; } // safety measures becuase im lazy, hunter
+                for (int i = 0; i < working_tickets.Length; i++) {
 
-                if (!menuItem.Get_Completed() && !menuItem.Get_if_started()) { // if it is neither complete, nor begun. (basically hasnt started cooking yet...)
-                    
-                    menuItem.StartCooking();
-                    rollingfryers--;
+                    foreach (var mi in working_tickets[i].Get_menu_items()) {
+                        
+                        if(rollingfryers < 1 ){ return; }
 
-                    return;
+                        if (!mi.Get_Completed()) {
+                            
+                            if(rollingfryers < 1 ){ return; }
 
+                            if (mi.Get_StartTime().AddSeconds(mi.Get_cookTime()) > DateTime.Now) {
+
+                                rollingfryers -= 1;
+                                
+
+                            }
+                        }
+                    }
                 }
             }
-        }
+
+            foreach (var tickets in working_tickets) {
+                
+                SaveTickets("./tickets/");
+                
+                
+            }
+            
+            
+            
+            
+        
         
         
         

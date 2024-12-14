@@ -8,4 +8,9 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="past\" />
+    <Folder Include="tickets\" />
+  </ItemGroup>
+
 </Project>
