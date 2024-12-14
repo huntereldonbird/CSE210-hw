@@ -60,62 +60,7 @@ public class FoodTruckProcess {
         int rollingfryers = lastnumfryers;
        
 
-<<<<<<< Updated upstream
-        foreach (Ticket ticket in current_tickets) {
-
-
-
-            // if the ticket is complete, remove it from the array and work on the next one.
-
-            if (ticket.Get_Complted()) {
-                CloseOutTicket(ticket);
-            }
-
-        }
-        
-        Console.Write("here4");
-
-
-        // For incomplete tickets, we need to check if any menuitems are done cooking...
-            
-            // first we check if they are already completed, ingore them if they are,
-            // then we need to see if they are started, if they are, we need to check if they are done cooking
-            
-            
-            Ticket[] active_tickets = LoadTickets("./tickets/");
-            
-            foreach (var ticket in active_tickets) {
-                
-                foreach (var menuitem in ticket.Get_menu_items()) {
-
-                    // we only need to check items that are started, have their time over, and are not considered complteded. then we can get a fryer back from them.
-                    //if they are completed, the fryer is already returned, and if they arent started, they aren't important in this step
-                    
-                    if (!menuitem.Get_Completed() && menuitem.Get_if_started()) { // if incomplete & started already, 
-
-                        if (menuitem.Get_StartTime().AddSeconds(menuitem.Get_cookTime()) > DateTime.Now) { // if cooking is completed
-
-                            menuitem.Set_Completed(true);
-                            rollingfryers += 1;
-                            
-                            Console.Write("here2");
-
-
-                            // this means that we take the meal out of the fryer and return the number back so we can use it in the next step
-                        }
-                    }
-                }
-            }
-
-
-            Console.Write("here5");
-
-
-
-            // Now we need to see how many items we can now begin cooking,
-=======
         // Now we need to see how many items we can now begin cooking,
->>>>>>> Stashed changes
         // given the number of fryers, how many new menu items can we begin cooking with.
 
         
@@ -135,18 +80,6 @@ public class FoodTruckProcess {
                     rollingfryers -= 1;
                     Console.WriteLine("Started: " + mi.Display());
 
-<<<<<<< Updated upstream
-                    if (menuItem.Get_StartTime().AddSeconds(menuItem.Get_cookTime()) <= DateTime.Now) {
-                        
-                        menuItem.Set_Completed(true);
-                        rollingfryers -= 1;
-                        Console.Write("here8");
-
-
-                    }
-                    
-=======
->>>>>>> Stashed changes
                 }
                 
                 //Console.Write("No Need to Cook!");
