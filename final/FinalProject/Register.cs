@@ -110,6 +110,11 @@ public MenuItem AddToOrder(){
 				}
 				
 				int entre_choice = int.Parse(Console.ReadLine());
+				
+				if(0 > entre_choice || entre_choice > entres.Count)
+				{
+					
+				}
 
 				return entres[entre_choice];
 				
