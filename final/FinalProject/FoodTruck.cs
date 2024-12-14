@@ -29,7 +29,9 @@ public class FoodTruck {
 	
 	
 	public void BeginSession() {
-		Console.Clear();
+		
+		// Console.Clear();
+		
 		Console.WriteLine("Welcome to the food truck");
 		
 		Console.WriteLine();
@@ -93,7 +95,7 @@ public class FoodTruck {
 
 		List<Ticket> result = new List<Ticket>();
 
-		var files = Directory.GetFiles(@"./tickets", "*.json");
+		var files = Directory.GetFiles("./tickets", "*.json");
 
 		foreach (var file in files) {
 			Ticket ticket = JsonSerializer.Deserialize<Ticket>(File.ReadAllText(file));

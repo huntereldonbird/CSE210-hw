@@ -34,7 +34,7 @@ public class FoodTruckProcess {
 
         List<Ticket> result = new List<Ticket>();
 
-        var files = Directory.GetFiles(@directory, "*.json");
+        var files = Directory.GetFiles(directory, "*.json");
 
         foreach (var file in files) {
             Ticket ticket = JsonSerializer.Deserialize<Ticket>(File.ReadAllText(file));
@@ -56,6 +56,9 @@ public class FoodTruckProcess {
 
     public void UpdateLoop(int lastnumfryers) { // this is so I can remake the update loop to remove errors
         
+        Console.Write("here1");
+
+        
         int rollingfryers = lastnumfryers;
         
         // update the current active tickets,
@@ -67,6 +70,9 @@ public class FoodTruckProcess {
         Ticket[] current_tickets = LoadTickets("./tickets/");
 
         foreach (Ticket ticket in current_tickets) {
+            
+            Console.Write("here3");
+
 
             // if the ticket is complete, remove it from the array and work on the next one.
 
@@ -75,6 +81,9 @@ public class FoodTruckProcess {
             }
 
         }
+        
+        Console.Write("here4");
+
 
         // For incomplete tickets, we need to check if any menuitems are done cooking...
             
@@ -100,6 +109,9 @@ public class FoodTruckProcess {
 
                             menuitem.Set_Completed(true);
                             rollingfryers += 1;
+                            
+                            Console.Write("here2");
+
 
                             // this means that we take the meal out of the fryer and return the number back so we can use it in the next step
                         }
@@ -108,50 +120,62 @@ public class FoodTruckProcess {
             }
 
 
+            Console.Write("here5");
 
 
 
             // Now we need to see how many items we can now begin cooking,
         // given the number of fryers, how many new menu items can we begin cooking with.
+        
+        Console.Write("here9");
 
-        if (rollingfryers > 4) { // puting this here so that I dont screw something up later, hunter
-            rollingfryers = 4;
-        }
         
         Ticket[] working_tickets = LoadTickets("./tickets/");
 
-            while (rollingfryers > 0) {
+        Console.Write("here10");
 
-                for (int i = 0; i < working_tickets.Length; i++) {
+        int allowance = 5;
 
-                    foreach (var mi in working_tickets[i].Get_menu_items()) {
+        for (int i = 0; i < allowance; i++) { // looks 5 tickets deep
+            
+            Console.Write("here11");
+            
+            if(i > working_tickets.Length) { continue; }
+
+            foreach (var menuItem in working_tickets[i].Get_menu_items()) {
+                
+                Console.WriteLine(working_tickets[i].Display());
+
+
+                if (!menuItem.Get_Completed() && menuItem.Get_if_started()) {
+                    
+
+                    if (menuItem.Get_StartTime().AddSeconds(menuItem.Get_cookTime()) < DateTime.Now) {
                         
-                        if(rollingfryers < 1 ){ return; }
+                        menuItem.Set_Completed(true);
+                        rollingfryers -= 1;
+                        Console.Write("here8");
 
-                        if (!mi.Get_Completed()) {
-                            
-                            if(rollingfryers < 1 ){ return; }
 
-                            if (mi.Get_StartTime().AddSeconds(mi.Get_cookTime()) > DateTime.Now) {
-
-                                rollingfryers -= 1;
-                                
-
-                            }
-                        }
                     }
+                    
                 }
             }
+        }
+        
+            
+        Console.Write("here7");
 
-            foreach (var ticket in working_tickets) {
-                
-                SaveTickets("./tickets/", ticket);
-                
-            }
+
+        foreach (var ticket in working_tickets) {
+            
+            SaveTickets("./tickets/", ticket);
+            
+        }
+        
             
             
-            
-            
+        Console.Write("here");
         
         
         
