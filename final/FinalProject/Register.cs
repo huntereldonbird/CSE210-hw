@@ -1,3 +1,6 @@
+using System.Diagnostics;
+using System.Reflection.Metadata.Ecma335;
+
 namespace FinalProject;
 
 public class Register {
@@ -11,48 +14,56 @@ public class Register {
 	}
 
 	// only use this when you are creating a new ticket, hunter
-	public void BeginUsingRegisterSystem() {
+	public void BeginSession() {
+
+		bool active = true;
 
 		Console.Clear();
 
 		Console.WriteLine("Register System:");
 
+		Console.WriteLine("Press any key to start an order.");
 
-		MenuItem[] order = BuildMenu(null);
+		ConsoleKey keyInfo = Console.ReadKey(true).Key;
 
-		Ticket _ticket = new Ticket(order, 0);
+		if (keyInfo != ConsoleKey.Clear) {
 
-		_foodTruck.NewTicketCreated(_ticket);
+			List<MenuItem> menuItems = new List<MenuItem>();
 
+			while (active) {
 
-		BeginUsingRegisterSystem();
+				MenuItem menuItem = AddToOrder();
 
-	}
+				if (menuItem == null) {
+					active = false;
+					break;
+				}
 
-	
-	// laststop basiically just is a break condition, if there sint anything left, then you should break the look and return instead of doing more 'recusion', hunter
-	public MenuItem[] BuildMenu(MenuItem[] previousItems) {
+				menuItems.Add(menuItem);
+			}
+			
+			Ticket ticket = new Ticket(menuItems.ToArray());
+			ticket.Display();
+			_foodTruck.NewTicketCreated(ticket);
 
-		
-		MenuItem[] newItems = new MenuItem[0];
-		if (previousItems != null) {
-			newItems = previousItems;
-		}
-		
-		
-		MenuItem tmp = AddNewItem();
-
-		if (tmp != null) {
-			newItems.Append(tmp);
-			return BuildMenu(newItems);
 		}
 
-		return newItems;
-		
+		Console.WriteLine("c : continue, q = quit");
+
+		string userin = Console.ReadLine();
+
+		switch (userin) {
+			
+			case("c"):
+				BeginSession();
+				break;
+			case("q"):
+				Console.Clear();
+				break;
+		}
 	}
 
-	public MenuItem AddNewItem() {
-		Console.Clear();
+public MenuItem AddToOrder(){
 			
 		Console.WriteLine("Which item are you adding :");
 			
@@ -134,6 +145,8 @@ public class Register {
 		}
 
 		return null;
+		
+		
 	}
 	
 }

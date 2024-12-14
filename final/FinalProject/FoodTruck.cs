@@ -1,6 +1,7 @@
 namespace FinalProject;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 public class FoodTruck {
 	
@@ -9,19 +10,21 @@ public class FoodTruck {
 	private Register _register;
 	private KitchenSystem _kitchenSystem;
 	
-	// this is here temporarily, idk what to do with this really will ask later in class, hunter
-	private Ticket[] _tickets;
 
 	private bool _running;
 	
 	// does all of the logic when the food truck is started, hunter
 	public FoodTruck() {
 		
-		
-		_expenditure = new Expenditure();
 		_register = new Register(this);
+		_kitchenSystem = new KitchenSystem(this);
+		_expenditure = new Expenditure();
 		
+		BeginSession();
+		
+	}
 
+	public void BeginSession() {
 		Console.Clear();
 		Console.WriteLine("Welcome to the food truck");
 		
@@ -39,15 +42,16 @@ public class FoodTruck {
 			// start the register system, hunter
 			case (1):
 				
-				_register.BeginUsingRegisterSystem();
+				_register.BeginSession();
+				BeginSession();
 
 				break;
 			
 			// star the kitchen system
 			case (2):
 
-				_kitchenSystem.Enter();
-				
+				_kitchenSystem.BeginSession();
+				BeginSession();
 				
 				break;
 			
@@ -55,21 +59,17 @@ public class FoodTruck {
 			// start the expenditure system
 			case (3):
 
-				Expenditure expenditure = new Expenditure();
+				_expenditure.BeginSession();
+				BeginSession();
+				
 				
 				break;
 			
 			case (4):
 				break;
 		}
-		
 	}
-
 	
-	// starts up the expenditure class and adds all of the values, hunter
-	void load_Expenditure_System() {
-		
-	}
 
 	public Expenditure GetExpenditure() {
 		return _expenditure;
@@ -78,30 +78,49 @@ public class FoodTruck {
 	
 	// This is where the new tickets are created grab them from here, or import them.
 	public void NewTicketCreated(Ticket ticket) {
-		_tickets.Append(ticket);
-	}
 
-	public Ticket[] GetActiveTickets() {
-		
-		return _tickets;
-		
-	}
+		Ticket[] tmp = LoadTickets("active.json");
 
-	public void RemoveTicket(Ticket ticket) { // we need to make sure that when it removes it goes into a completed tickets, or it is saved somehwere else, hunter
-		
-		Ticket[] newarray = new Ticket[0];
-
-		foreach (var thisticket in _tickets) {
-			if (thisticket != ticket) {
-
-				newarray.Append(thisticket);
-
-			}
+		if (tmp != Array.Empty<Ticket>()) {
+			tmp = new Ticket[1] {
+				ticket
+			};
 		}
 		
-		_tickets = newarray;
-		
-		
+		Console.WriteLine(ticket.Get_menu_items()[0].Display());
+
+		tmp.Append(ticket);
+
+		SaveTickets("active.json", tmp);
+
+	}
+	
+	public Ticket[] LoadTickets(String location) {
+
+		var ticket = File.ReadAllText(location);
+        
+		if (ticket == String.Empty) {
+			return new Ticket[0];
+		}
+        
+		TicketSaveFormat saveFormat = JsonSerializer.Deserialize<TicketSaveFormat>(ticket);
+
+		Ticket[] result = saveFormat.Get();
+
+		return result;
+	}
+	
+	public void SaveTickets(String location, Ticket[] tickets) {
+        
+		TicketSaveFormat saveFormat = new TicketSaveFormat(tickets);
+        
+		var options = new JsonSerializerOptions();
+		options.WriteIndented = true;
+
+		string tjson = JsonSerializer.Serialize<TicketSaveFormat>(saveFormat, options);
+
+		File.WriteAllText(location, tjson);
+        
 	}
 
 	public bool Closing() {

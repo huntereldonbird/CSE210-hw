@@ -1,4 +1,6 @@
 using System.ComponentModel;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace FinalProject;
 
@@ -9,6 +11,7 @@ public class MenuItem {
 		drink,
 		side,
 	}
+	
 	
 	// FOR GIBBONS/AMMON, I sadly needed to include the default getters and setters for the JSon serializer
 	// otherwise I used the getters and setters that I had made, hunter
@@ -26,6 +29,12 @@ public class MenuItem {
 	private bool _started { get; set; } // this is here bcause i was too lazy to find a better way of doing this, hunter
 	
 	private String _name { get; set; }
+
+	
+	[JsonConstructor]
+	public MenuItem() {
+		
+	}
 
 
 	public void Set_Completed(bool b) {

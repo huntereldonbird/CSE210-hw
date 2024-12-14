@@ -30,4 +30,13 @@ public class Expenditure {
 	    DictionaryMenuItem[menuItem] = value;
 	    
     }
+
+    
+    // this is called when it is selected in the food truck interface, hunter
+    public void BeginSession() {
+	    
+	    
+	    
+	    
+    }
 }

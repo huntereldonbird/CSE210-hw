@@ -21,7 +21,7 @@ class Program
             
         });
         
-        task1.Start();
+        //task1.Start();
         //task2.Start();
         
         FoodTruck foodTruck = new FoodTruck(); // WIll have to see if I even need to have a task..., hunter

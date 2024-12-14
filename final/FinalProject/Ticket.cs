@@ -11,13 +11,15 @@ public class Ticket {
 
 	
 	// when this is called, it automatiically adds the datetime btw, hunter
-	public Ticket(MenuItem[] menuItems, int id) {
+	public Ticket(MenuItem[] menuItems) {
 		
 		_menuItems = menuItems;
-		
-		_orderid = id;
+
 
 		_created = DateTime.Now;
+		
+		Random rand = new Random();
+		_orderid = rand.Next(0, 10000000);
 
 
 	}

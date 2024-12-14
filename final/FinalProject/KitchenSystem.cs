@@ -20,11 +20,11 @@ public class KitchenSystem {
     // this is the area for the code when someone actually enters the code from the foodtruck menu, hunter
     // Only incude visuals and controls from here please...
     
-    public void Enter() {
+    public void BeginSession() {
         
         Console.WriteLine("Current Orders");
 
-        foreach (var ticket in _foodTruck.GetActiveTickets()) {
+        foreach (var ticket in _foodTruck.LoadTickets("active.json")) {
             
             Console.WriteLine("Ticket : " + ticket.Get_orderid());
             

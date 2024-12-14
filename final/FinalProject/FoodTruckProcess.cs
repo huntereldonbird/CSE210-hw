@@ -2,6 +2,8 @@ using System.Text.Json;
 
 namespace FinalProject;
 
+
+// this is the engine of the food truck, it is what keeps track of everything.
 public class FoodTruckProcess {
     
     private Ticket[] _pastTickets;
@@ -19,10 +21,12 @@ public class FoodTruckProcess {
     // save the arrays to "memory"
     public void SaveTickets(String location, Ticket[] tickets) {
         
+        TicketSaveFormat saveFormat = new TicketSaveFormat(tickets);
+        
         var options = new JsonSerializerOptions();
         options.WriteIndented = true;
 
-        string tjson = JsonSerializer.Serialize<Ticket[]>(tickets, options);
+        string tjson = JsonSerializer.Serialize<TicketSaveFormat>(saveFormat, options);
 
         File.WriteAllText(location, tjson);
         
@@ -34,7 +38,13 @@ public class FoodTruckProcess {
 
         var ticket = File.ReadAllText(location);
         
-        Ticket[] result = JsonSerializer.Deserialize<Ticket[]>(ticket);
+        if (ticket == String.Empty) {
+            return new Ticket[0];
+        }
+        
+        TicketSaveFormat saveFormat = JsonSerializer.Deserialize<TicketSaveFormat>(ticket);
+
+        Ticket[] result = saveFormat.Get();
 
         return result;
     }
@@ -65,9 +75,6 @@ public class FoodTruckProcess {
 
 
     public void UpdateLoop(int lastnumfryers) { // this is so I can remake the update loop to remove errors
-        
-        Console.WriteLine("here");
-        System.Diagnostics.Debug.WriteLine("I am using debugging");
         
         int rollingfryers = lastnumfryers;
         
@@ -137,6 +144,7 @@ public class FoodTruckProcess {
         
         if (!closed) {
             Thread.Sleep(1000);
+            SaveTickets("active.json", active_tickets);
             UpdateLoop(lastnumfryers);
             
         }
