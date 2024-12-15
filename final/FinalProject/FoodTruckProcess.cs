@@ -85,8 +85,15 @@ public class FoodTruckProcess {
                     
                     mi.StartCooking();
                     rollingfryers -= 1;
-                    
+                    continue;
                 }
+
+                if (mi.Get_if_started() && !mi.Get_Completed()) {
+
+                    rollingfryers -= 1;
+                    continue;
+                }
+                
                 
                 //Console.Write("No Need to Cook!");
                 
