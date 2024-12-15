@@ -109,4 +109,8 @@ public class MenuItem {
 		return _price;
 	}
 
+	public int Get_cost() {
+		return _cost;
+	}
+
 }

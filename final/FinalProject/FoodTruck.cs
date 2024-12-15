@@ -30,7 +30,7 @@ public class FoodTruck {
 	
 	public void BeginSession() {
 		
-		// Console.Clear();
+		Console.Clear();
 		
 		Console.WriteLine("Welcome to the food truck");
 		

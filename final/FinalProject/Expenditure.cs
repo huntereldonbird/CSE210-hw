@@ -31,14 +31,22 @@ public class Expenditure {
 	}
 
 	public void BeginSession() {
+
+		double RunnintTotal = 0;
+		double RunningCost = 0;
+		int tally = 0;
 		
 		Console.Clear();
 
 		Ticket[] OldTickets = _foodTruck.LoadTickets("./past/");
 
 		foreach (var ticket in OldTickets) {
+
+			tally++;
+			
 			
 			Console.WriteLine("-----------------------");
+			
             
 			Console.Write(ticket.Get_orderid() + " : ");
             
@@ -57,16 +65,38 @@ public class Expenditure {
 			
 			Console.Write(ticket.Get_Total_Price() + "$.................");
 			
+			RunnintTotal += ticket.Get_Total_Price();
+			RunningCost += ticket.Get_Total_Cost();
+			
 			Console.Write(ticket.Get_created());
+			
+			Console.WriteLine();
+			
+			Console.WriteLine("-----------------------");
 
 			Console.WriteLine();
 
 		}
 		
-		Console.WriteLine("-----------------------");
+		Console.WriteLine("");
+		
+		Console.WriteLine("-------------------------------------------------------------------------------------");
+
+		Console.WriteLine("Total Revenue : " + RunnintTotal + "$" + "		Total Expences : " + RunningCost + "$" + "		Profit : " + (RunnintTotal - RunningCost) + "$");
+
+		Console.WriteLine("-------------------------------------------------------------------------------------");
+		
+		Console.WriteLine("Press any key to continue...");
 
 
 
+		ConsoleKey keyInfo = Console.ReadKey(true).Key;
+
+		if (keyInfo != ConsoleKey.Clear) {
+                
+			
+                
+		}
 
 
 

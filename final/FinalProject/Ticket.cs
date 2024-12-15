@@ -108,6 +108,18 @@ public class Ticket {
 		return result + tax;
 	}
 
+	public double Get_Total_Cost() {
+		double result = 0;
+
+		foreach (MenuItem menuitem in Get_menu_items()) {
+
+			result += menuitem.Get_cost();
+
+		}
+		
+		return result;
+	}
+
 	public DateTime Get_created() {
 		return _created;
 	}
