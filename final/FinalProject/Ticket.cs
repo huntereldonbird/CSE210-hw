@@ -39,9 +39,6 @@ public class Ticket {
 
 	public DateTime _created { get; set; }
 
-	public bool _complted { get; set; }
-
-
 
 	public String Display() {
 
@@ -78,9 +75,6 @@ public class Ticket {
 
 	public void Set_orderid(int orderid) {
 		_orderid = orderid;
-	}
-	public void Set_Complete(bool b) {
-		_complted = b;
 	}
 
 	

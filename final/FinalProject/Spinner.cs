@@ -18,27 +18,31 @@ public class Spinner
     "⣦",
     "⣤"
     ];
+
+    public Spinner() {
+        
+        Animate(1);
+        
+    }
     
     
     // iterations would be in reference to the amount of seconds it takes?
     // General rule, 1 itteration = 9 seconds because we have 9 frames of animation.
-    public void Animate(int seconds)
-    {
-        DateTime endtime = DateTime.Now.AddSeconds(seconds);
-
-        int index = 0;
-        while (DateTime.Now < endtime)
+    public void Animate(int previous) {
+        
+        int index = previous;
+        
+        if (index >= AnimationFrames.Count() - 1)
         {
-            if (index >= AnimationFrames.Count())
-            {
-                index = 0;
-            }
-            
-            Console.Write(AnimationFrames[index]);
-            Thread.Sleep(1000);
-            Console.Write("\b \b");
-            
-            index++;
+            index = 0;
         }
+        
+        Console.Write(AnimationFrames[index]);
+        Thread.Sleep(1000);
+        Console.Write("\b \b");
+        
+        index++;
+
+        Animate(index);
     }
 }

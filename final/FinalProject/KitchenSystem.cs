@@ -4,10 +4,25 @@ namespace FinalProject;
 
 public class KitchenSystem {
     // consider adding ASCII art as a loading animation when an item is being prepared
+    
+    public String[] AnimationFrames =
+        [
+        "⣦",
+        "⣮",
+        "⣴",
+        "⣪",
+        "⣤",
+        "⣥",
+        "⣴",
+        "⣦",
+        "⣤"
+        ];
 
     private FoodTruck _foodTruck;
 
     private int _fryers;
+    
+    List<Task> tasks = new List<Task>();
     
     public KitchenSystem(FoodTruck foodTruck) {
 
@@ -20,7 +35,9 @@ public class KitchenSystem {
     // this is the area for the code when someone actually enters the code from the foodtruck menu, hunter
     // Only incude visuals and controls from here please...
 
-    public void BeginSession() {
+    public void BeginSession(int previousindex) {
+        
+        int index = previousindex;
         
         Console.Clear();
         
@@ -29,10 +46,38 @@ public class KitchenSystem {
         foreach (var ticket in _foodTruck.LoadTickets()) {
             
             Console.WriteLine("-----------------------");
-            Console.WriteLine(ticket.Display());
+            
+            Console.Write(ticket.Get_orderid() + " : ");
+
+            foreach (var mi in ticket.Get_menu_items()) {
+                Console.Write("[ ");
+
+                if (!mi.Get_Completed() && mi.Get_if_started()) {
+                    
+                    Task task1 = new Task(() => {
+            
+                        Spinner spinner = new Spinner();
+            
+                    });
+                    
+                    tasks.Add(task1);
+                    
+                    task1.Start();
+
+                    Console.Write(mi.Display());
+
+
+                }
+                
+                Console.Write("]");
+                
+            }
+            
             //maybe here???
-            Spinner spinner = new Spinner();
-            spinner.Animate(7);           
+            
+            Console.WriteLine();
+
+            
             
         }
         
@@ -45,7 +90,7 @@ public class KitchenSystem {
         switch (userin) {
 			
             case("c"):
-                BeginSession();
+                BeginSession(index);
                 break;
             case("q"):
                 Console.Clear();

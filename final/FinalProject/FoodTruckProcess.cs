@@ -46,9 +46,9 @@ public class FoodTruckProcess {
 
     public void CloseOutTicket(Ticket ticket) {
 
-        SaveTickets("./past/" + ticket.Get_orderid().ToString(), ticket);
+        SaveTickets("./past/", ticket);
         
-        File.Delete("./tickets/" + ticket.Get_orderid().ToString());
+        File.Delete("./tickets/" + ticket.Get_orderid().ToString() + ".json");
 
     }
 
@@ -58,7 +58,15 @@ public class FoodTruckProcess {
 
         
         int rollingfryers = lastnumfryers;
+        
+        
+        Ticket[] removaltickets = LoadTickets("./tickets/");
 
+        foreach (Ticket ticket in removaltickets) {
+            if (ticket.Get_Complted()) {
+                CloseOutTicket((ticket));
+            }
+        }
         
         
         Ticket[] working_tickets = LoadTickets("./tickets/");
@@ -70,7 +78,7 @@ public class FoodTruckProcess {
             foreach (var mi in menuItems) {
                 
                 if(rollingfryers < 0){ continue; }
-
+                
                 if (!mi.Get_if_started()) {
                     
                     mi.StartCooking();
@@ -79,7 +87,6 @@ public class FoodTruckProcess {
                 }
                 
                 //Console.Write("No Need to Cook!");
-                    
                 
             }
 
@@ -93,12 +100,8 @@ public class FoodTruckProcess {
             
         }
         
-        
-        
-        
-        
         if (!closed) {
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             UpdateLoop(rollingfryers);
             
         }
