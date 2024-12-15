@@ -13,12 +13,17 @@ public class Register {
 
 	}
 
-	public bool ValidateInput(int i) {
-		if(0 > i || i > _foodTruck.GetExpenditure().GetDictionary().Count - 1)
-			{
-				Console.WriteLine("Please enter a number between 0 and " + _foodTruck.GetExpenditure().GetDictionary().Count);
-				return false;
-			} else return true;
+	
+	// returns true if valid, false if invalid
+	public bool ValidateInput(int i, int j) {
+
+		if (i < 0 || i > (j-1)) {
+			Console.WriteLine("Please enter a valid number");
+			return false;
+		}
+
+		return true;
+
 	}
 
 	// only use this when you are creating a new ticket, hunter
@@ -48,10 +53,12 @@ public class Register {
 				}
 
 				menuItems.Add(menuItem);
+				Console.WriteLine(menuItem.Display());
 			}
 			
+			
+			
 			Ticket ticket = new Ticket(menuItems.ToArray());
-			ticket.Display();
 			_foodTruck.NewTicketCreated(ticket);
 
 		}
@@ -117,11 +124,13 @@ public MenuItem AddToOrder(){
 					Console.WriteLine("		" + i + ": " + entres[i].Display());
 				}
 				
-				int entre_choice = int.Parse(Console.ReadLine());				
-				if (ValidateInput(entre_choice)) {
-					return AddToOrder();
+				int entre_choice = int.Parse(Console.ReadLine());	
+				
+				
+				if (ValidateInput(entre_choice, entres.Count)) {
+					return entres[entre_choice];
 				}
-				return entres[entre_choice];
+				return AddToOrder();
 				
 			case ("2"):
 				List<MenuItem> sides = new List<MenuItem>();
@@ -139,10 +148,10 @@ public MenuItem AddToOrder(){
 				}
 				
 				int sides_choice = int.Parse(Console.ReadLine());
-				if (ValidateInput(sides_choice)) {
-					return AddToOrder();
+				if (ValidateInput(sides_choice, sides.Count)) {
+					return sides[sides_choice];
 				}
-				return sides[sides_choice];
+				return AddToOrder();
 			
 			case("3"):
 				
@@ -161,10 +170,10 @@ public MenuItem AddToOrder(){
 				}
 				
 				int drinks_choice = int.Parse(Console.ReadLine());
-				if (ValidateInput(drinks_choice)) {
-					return AddToOrder();
+				if (ValidateInput(drinks_choice, drinks.Count)) {
+					return drinks[drinks_choice];
 				}
-				return drinks[drinks_choice];
+				return AddToOrder();
 			
 			case("4"):
 
