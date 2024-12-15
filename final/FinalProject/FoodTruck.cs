@@ -56,7 +56,7 @@ public class FoodTruck {
 			// star the kitchen system
 			case (2):
 
-				_kitchenSystem.BeginSession();
+				_kitchenSystem.BeginSession(0);
 				BeginSession();
 				
 				break;
@@ -91,11 +91,11 @@ public class FoodTruck {
 
 	}
 	
-	public Ticket[] LoadTickets() {
+	public Ticket[] LoadTickets(string directory) {
 
 		List<Ticket> result = new List<Ticket>();
 
-		var files = Directory.GetFiles("./tickets", "*.json");
+		var files = Directory.GetFiles(directory, "*.json");
 
 		foreach (var file in files) {
 			Ticket ticket = JsonSerializer.Deserialize<Ticket>(File.ReadAllText(file));

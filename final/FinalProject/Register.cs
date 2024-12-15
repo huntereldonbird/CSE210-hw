@@ -48,10 +48,12 @@ public class Register {
 				}
 
 				menuItems.Add(menuItem);
+				Console.WriteLine(menuItem.Display());
 			}
 			
+			
+			
 			Ticket ticket = new Ticket(menuItems.ToArray());
-			ticket.Display();
 			_foodTruck.NewTicketCreated(ticket);
 
 		}
