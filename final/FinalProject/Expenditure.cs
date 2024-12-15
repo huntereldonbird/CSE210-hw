@@ -2,6 +2,8 @@ namespace FinalProject;
 
 public class Expenditure {
 	
+	FoodTruck _foodTruck;
+	
 	
 	public Dictionary<MenuItem, int> DictionaryMenuItem = new Dictionary<MenuItem, int>() {
 		

@@ -35,67 +35,71 @@ public class KitchenSystem {
     // this is the area for the code when someone actually enters the code from the foodtruck menu, hunter
     // Only incude visuals and controls from here please...
 
-    public void BeginSession(int previousindex) {
+    public void BeginSession() {
         
-        int index = previousindex;
+        Task task1 = new Task(() => {
+            
+            RenderScreen(0);
+            
+        });
+        
+        task1.Start();
+        
+        
+        
+        
+
+        Console.WriteLine("c : refresh, q : quit");
+        
+        
+    }
+
+    public void RenderScreen(int index) {
         
         Console.Clear();
         
         Console.WriteLine("Kitchen System : ");
 
         foreach (var ticket in _foodTruck.LoadTickets("./tickets")) {
-            
             Console.WriteLine("-----------------------");
             
             Console.Write(ticket.Get_orderid() + " : ");
-
+            
             foreach (var mi in ticket.Get_menu_items()) {
                 Console.Write("[ ");
 
                 if (!mi.Get_Completed() && mi.Get_if_started()) {
                     
-                    Task task1 = new Task(() => {
-            
-                        Spinner spinner = new Spinner();
-            
-                    });
-                    
-                    tasks.Add(task1);
-                    
-                    task1.Start();
 
+                    Console.Write("[" +AnimationFrames[index % 9] + "] ");
+                    
                     Console.Write(mi.Display());
 
-
+                }
+                else if(mi.Get_Completed()){
+                    
+                    Console.Write("[" + "\u2713" + "] ");
+                    Console.Write(mi.Display());
+                    
+                }
+                else {
+                    
+                    Console.Write("[" + "X" + "] ");
+                    Console.Write(mi.Display());
+                    
                 }
                 
                 Console.Write("]");
                 
             }
             
-            //maybe here???
-            
-            Console.WriteLine();
-
             
             
         }
         
-        Console.WriteLine("-----------------------");
-
-        Console.WriteLine("c : refresh, q : quit");
-
-        string userin = Console.ReadLine();
-
-        switch (userin) {
-			
-            case("c"):
-                BeginSession(index);
-                break;
-            case("q"):
-                Console.Clear();
-                break;
-        }
-    }   
+        Thread.Sleep(500);
+        RenderScreen(index + 1);
+        
+    }
 
 }

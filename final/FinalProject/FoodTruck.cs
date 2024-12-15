@@ -56,7 +56,7 @@ public class FoodTruck {
 			// star the kitchen system
 			case (2):
 
-				_kitchenSystem.BeginSession(0);
+				_kitchenSystem.BeginSession();
 				BeginSession();
 				
 				break;
