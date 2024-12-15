@@ -9,7 +9,7 @@ public class DeepFriedButter : MenuItem{
         Set_price(10);
         Set_cost(1);        
         Set_menuType(MenuType.entre);
-        Set_cookTime(10);
+        Set_cookTime(20);
     }
 
 }

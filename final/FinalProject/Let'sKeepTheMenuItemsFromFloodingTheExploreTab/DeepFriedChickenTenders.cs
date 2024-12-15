@@ -9,7 +9,7 @@ public class DeepFriedChickenTenders : MenuItem{
         Set_price(10);
         Set_cost(6);
         Set_menuType(MenuType.entre);
-        Set_cookTime(20);
+        Set_cookTime(30);
     }
 
 }

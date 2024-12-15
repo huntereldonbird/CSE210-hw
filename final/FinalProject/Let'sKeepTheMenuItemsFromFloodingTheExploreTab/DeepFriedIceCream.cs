@@ -9,7 +9,7 @@ public class DeepFriedIceCream : MenuItem{
         Set_price(10);
         Set_cost(5);
         Set_menuType(MenuType.side);
-        Set_cookTime(10);
+        Set_cookTime(15);
     }
 
 }

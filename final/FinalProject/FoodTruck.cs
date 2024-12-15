@@ -65,8 +65,8 @@ public class FoodTruck {
 			// start the expenditure system
 			case (3):
 
-				// _expenditure.BeginSession(0);
-				// BeginSession();
+				_expenditure.BeginSession();
+				BeginSession();
 				
 				
 				break;

@@ -107,5 +107,9 @@ public class Ticket {
 
 		return result + tax;
 	}
-	
+
+	public DateTime Get_created() {
+		return _created;
+	}
+
 }

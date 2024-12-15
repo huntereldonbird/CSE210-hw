@@ -9,7 +9,7 @@ public class MicrowavedSalad : MenuItem{
         Set_price(10);
         Set_cost(9);
         Set_menuType(MenuType.entre);
-        Set_cookTime(7);
+        Set_cookTime(30);
     }
 
 }

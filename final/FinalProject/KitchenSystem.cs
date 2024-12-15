@@ -30,35 +30,47 @@ public class KitchenSystem {
      
     }
 
+    private bool kill;
     
     
     // this is the area for the code when someone actually enters the code from the foodtruck menu, hunter
     // Only incude visuals and controls from here please...
 
     public void BeginSession() {
+
+        kill = false;
+        
         
         Task task1 = new Task(() => {
             
             RenderScreen(0);
-            
+ 
         });
         
         task1.Start();
         
         
         
-        
+        ConsoleKey keyInfo = Console.ReadKey(true).Key;
 
-        Console.WriteLine("c : refresh, q : quit");
-        
-        
+        if (keyInfo != ConsoleKey.Clear) {
+                
+            kill = true;
+                
+        }
+
     }
 
     public void RenderScreen(int index) {
         
         Console.Clear();
         
-        Console.WriteLine("Kitchen System : ");
+        if (kill) {
+            return;
+            
+        }
+        
+        Console.WriteLine("Kitchen System : Press any key to exit.");
 
         foreach (var ticket in _foodTruck.LoadTickets("./tickets")) {
             Console.WriteLine("-----------------------");
@@ -97,7 +109,7 @@ public class KitchenSystem {
             
         }
         
-        Thread.Sleep(500);
+        Thread.Sleep(1000);
         RenderScreen(index + 1);
         
     }
