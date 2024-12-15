@@ -84,8 +84,6 @@ public class FoodTruck {
 	
 	// This is where the new tickets are created grab them from here, or import them.
 	public void NewTicketCreated(Ticket ticket) {
-		
-		Console.WriteLine(ticket.Display());
 
 		SaveTickets("active.json", ticket);
 

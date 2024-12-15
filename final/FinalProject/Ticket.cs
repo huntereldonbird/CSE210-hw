@@ -92,5 +92,20 @@ public class Ticket {
 
 		return result;
 	}
+
+	public double Get_Total_Price() {
+
+		int result = 0;
+
+		foreach (MenuItem menuitem in Get_menu_items()) {
+
+			result += menuitem.Get_price();
+
+		}
+
+		double tax = result * 0.07;
+
+		return result + tax;
+	}
 	
 }

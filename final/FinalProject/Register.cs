@@ -53,13 +53,14 @@ public class Register {
 				}
 
 				menuItems.Add(menuItem);
-				Console.WriteLine(menuItem.Display());
 			}
 			
 			
 			
 			Ticket ticket = new Ticket(menuItems.ToArray());
 			_foodTruck.NewTicketCreated(ticket);
+			
+			Console.WriteLine(ticket.Display() + " Total = " + ticket.Get_Total_Price() + "$");
 
 		}
 

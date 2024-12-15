@@ -43,7 +43,7 @@ public class KitchenSystem {
         
         Console.WriteLine("Kitchen System : ");
 
-        foreach (var ticket in _foodTruck.LoadTickets("./tickets/")) {
+        foreach (var ticket in _foodTruck.LoadTickets("./tickets")) {
             
             Console.WriteLine("-----------------------");
             
