@@ -20,7 +20,7 @@ public class MenuItem {
 
 	public int _cookTimeinSeconds { get; set; }
 
-	public float _price { get; set; }
+	public int _price { get; set; }
 	
 	public DateTime _startTime { get; set; } // this is set when it is put into a "fryer", hunter
 	
@@ -57,7 +57,7 @@ public class MenuItem {
 	
 	
 	
-	public void Set_price(float price) {
+	public void Set_price(int price) {
 		_price = price;
 	}
 
@@ -100,5 +100,9 @@ public class MenuItem {
 		return _name;
 
 	}
-	
+
+	public int Get_price() {
+		return _price;
+	}
+
 }

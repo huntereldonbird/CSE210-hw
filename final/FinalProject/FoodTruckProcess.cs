@@ -56,8 +56,8 @@ public class FoodTruckProcess {
 
     public void UpdateLoop(int lastnumfryers) { // this is so I can remake the update loop to remove errors
 
-        
-        int rollingfryers = lastnumfryers;
+
+        int rollingfryers = 4;
         
         
         Ticket[] removaltickets = LoadTickets("./tickets/");
@@ -72,12 +72,14 @@ public class FoodTruckProcess {
         Ticket[] working_tickets = LoadTickets("./tickets/");
 
         for (int i = 0; i < working_tickets.Length; i++) {
+            
+            if(rollingfryers <= 0){ break; }
 
             MenuItem[] menuItems = working_tickets[i].Get_menu_items();
 
             foreach (var mi in menuItems) {
                 
-                if(rollingfryers < 0){ continue; }
+                if(rollingfryers <= 0){ break; }
                 
                 if (!mi.Get_if_started()) {
                     

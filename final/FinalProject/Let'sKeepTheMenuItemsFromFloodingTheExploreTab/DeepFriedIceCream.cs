@@ -8,7 +8,7 @@ public class DeepFriedIceCream : MenuItem{
         Set_name("Deep Fried Ice Cream");
         Set_price(10);
         Set_menuType(MenuType.side);
-        Set_cookTime(5);
+        Set_cookTime(10);
     }
 
 }

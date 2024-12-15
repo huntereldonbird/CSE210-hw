@@ -56,7 +56,7 @@ public class FoodTruck {
 			// star the kitchen system
 			case (2):
 
-				_kitchenSystem.BeginSession(0);
+				_kitchenSystem.BeginSession();
 				BeginSession();
 				
 				break;
@@ -84,8 +84,6 @@ public class FoodTruck {
 	
 	// This is where the new tickets are created grab them from here, or import them.
 	public void NewTicketCreated(Ticket ticket) {
-		
-		Console.WriteLine(ticket.Display());
 
 		SaveTickets("active.json", ticket);
 
