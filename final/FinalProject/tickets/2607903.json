@@ -3,17 +3,15 @@
     {
       "_cookTimeinSeconds": 20,
       "_price": 10,
-      "_completed": false,
-      "_startTime": "0001-01-01T00:00:00",
-      "_started": false,
+      "_startTime": "2024-12-14T16:35:14.5151562-07:00",
+      "_started": true,
       "_name": "Depp Fried Chicken Tenders"
     },
     {
       "_cookTimeinSeconds": 0,
       "_price": 10,
-      "_completed": false,
-      "_startTime": "0001-01-01T00:00:00",
-      "_started": false,
+      "_startTime": "2024-12-14T16:35:14.5151564-07:00",
+      "_started": true,
       "_name": "water"
     }
   ],

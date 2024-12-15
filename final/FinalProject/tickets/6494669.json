@@ -3,25 +3,22 @@
     {
       "_cookTimeinSeconds": 5,
       "_price": 10,
-      "_completed": true,
-      "_startTime": "0001-01-01T00:00:00",
-      "_started": false,
+      "_startTime": "2024-12-14T16:35:14.5151568-07:00",
+      "_started": true,
       "_name": "Deep Fried Butter"
     },
     {
       "_cookTimeinSeconds": 0,
       "_price": 10,
-      "_completed": false,
-      "_startTime": "0001-01-01T00:00:00",
-      "_started": false,
+      "_startTime": "2024-12-14T16:49:30.5004371-07:00",
+      "_started": true,
       "_name": "Baja Blast"
     },
     {
       "_cookTimeinSeconds": 3,
       "_price": 10,
-      "_completed": false,
-      "_startTime": "0001-01-01T00:00:00",
-      "_started": false,
+      "_startTime": "2024-12-14T16:49:30.5004816-07:00",
+      "_started": true,
       "_name": "Deep Fried Snickers"
     }
   ],
