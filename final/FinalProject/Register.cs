@@ -13,6 +13,14 @@ public class Register {
 
 	}
 
+	public bool ValidateInput(int i) {
+		if(0 > i || i > _foodTruck.GetExpenditure().GetDictionary().Count - 1)
+			{
+				Console.WriteLine("Please enter a number between 0 and " + _foodTruck.GetExpenditure().GetDictionary().Count);
+				return false;
+			} else return true;
+	}
+
 	// only use this when you are creating a new ticket, hunter
 	public void BeginSession() {
 
@@ -66,7 +74,7 @@ public class Register {
 public MenuItem AddToOrder(){
 			
 		
-		// bool validInput = true;
+		
 		string choice = "";
 		// while (validInput) {
 
@@ -86,7 +94,7 @@ public MenuItem AddToOrder(){
 				}
 			}
 		// }
-
+		
 	
 
 		switch (choice) {
@@ -109,13 +117,10 @@ public MenuItem AddToOrder(){
 					Console.WriteLine("		" + i + ": " + entres[i].Display());
 				}
 				
-				int entre_choice = int.Parse(Console.ReadLine());
-				
-				if(0 > entre_choice || entre_choice > entres.Count)
-				{
-					
+				int entre_choice = int.Parse(Console.ReadLine());				
+				if (ValidateInput(entre_choice)) {
+					return AddToOrder();
 				}
-
 				return entres[entre_choice];
 				
 			case ("2"):
@@ -134,7 +139,9 @@ public MenuItem AddToOrder(){
 				}
 				
 				int sides_choice = int.Parse(Console.ReadLine());
-
+				if (ValidateInput(sides_choice)) {
+					return AddToOrder();
+				}
 				return sides[sides_choice];
 			
 			case("3"):
@@ -154,7 +161,9 @@ public MenuItem AddToOrder(){
 				}
 				
 				int drinks_choice = int.Parse(Console.ReadLine());
-
+				if (ValidateInput(drinks_choice)) {
+					return AddToOrder();
+				}
 				return drinks[drinks_choice];
 			
 			case("4"):
