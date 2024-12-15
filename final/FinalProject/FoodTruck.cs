@@ -56,7 +56,7 @@ public class FoodTruck {
 			// star the kitchen system
 			case (2):
 
-				_kitchenSystem.BeginSession();
+				_kitchenSystem.BeginSession(0);
 				BeginSession();
 				
 				break;
@@ -65,7 +65,7 @@ public class FoodTruck {
 			// start the expenditure system
 			case (3):
 
-				_expenditure.BeginSession();
+				_expenditure.BeginSession(0);
 				BeginSession();
 				
 				
