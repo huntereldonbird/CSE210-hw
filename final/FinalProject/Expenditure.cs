@@ -82,7 +82,7 @@ public MenuItem ViewRecords(){
 	
 
 		switch (choice) {
-			case("1"):
+			case("1"): //views past tickets
 				foreach (var ticket in _foodTruck.LoadTickets("./past/")) {
             
             	Console.WriteLine("-----------------------");
@@ -94,11 +94,27 @@ public MenuItem ViewRecords(){
             	}
                         
             	Console.WriteLine();
-			case("2"):
+			case("2"): //view stock
 				foreach (var item in DictionaryMenuItem) {
-					Console.WriteLine();
+					Console.WriteLine($"{item.Key} Stock remaining: {item.Value}");
 				}
-            
+            case("3"): //add stock
+				Console.WriteLine("What would you like to restock?");
+
+				Console.WriteLine(" 	1) Frozen Baja Blast (cost X)");
+				Console.WriteLine(" 	1) Frozen Butter (cost X)");
+				Console.WriteLine(" 	1) Frozen Chicken Tenders (cost X)");
+				Console.WriteLine(" 	1) Frozen Ice Cream (cost X)");
+				Console.WriteLine(" 	1) Frozen Oreos (cost X)");
+				Console.WriteLine(" 	1) Frozen Snickers (cost X)");
+				Console.WriteLine(" 	1) Frozen Salad (cost X)");
+				Console.WriteLine(" 	1) Frozen Water (cost X)");
+
+				int stock_choice = int.Parse(Console.ReadLine());
+				if (ValidateInput(stock_choice, Stock.Count)) {
+					return Stock[stock_choice];
+				}
+				return AddToOrder();
             return null;
         	}
 		}
