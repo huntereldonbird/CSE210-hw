@@ -23,12 +23,17 @@ public class Expenditure {
 		
 	}
 
-	
+	private FoodTruck _foodtruck;
 	
     private void change_value(MenuItem menuItem, int value) {
         
 	    DictionaryMenuItem[menuItem] = value;
 	    
+    }
+	public Expenditure(FoodTruck foodTruck) {
+
+        _foodTruck = foodTruck;
+     
     }
 
     
@@ -39,35 +44,15 @@ public void BeginSession(int previousindex) {
         
         Console.Clear();
         
-        Console.WriteLine("Kitchen System : ");
+        Console.WriteLine("Expenditure System : ");
 
-        foreach (var ticket in _foodTruck.LoadTickets(Directory "*/past/")) {
+        foreach (var ticket in _foodTruck.LoadTickets("./past/")) {
             
             Console.WriteLine("-----------------------");
             
             Console.Write(ticket.Get_orderid() + " : ");
 
             foreach (var mi in ticket.Get_menu_items()) {
-                Console.Write("[ ");
-
-                if (!mi.Get_Completed() && mi.Get_if_started()) {
-                    
-                    Task task1 = new Task(() => {
-            
-                        Spinner spinner = new Spinner();
-            
-                    });
-                    
-                    tasks.Add(task1);
-                    
-                    task1.Start();
-
-                    Console.Write(mi.Display());
-
-
-                }
-                
-                Console.Write("]");
                 
             }
                         

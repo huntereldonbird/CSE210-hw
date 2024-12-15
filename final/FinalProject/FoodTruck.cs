@@ -18,7 +18,7 @@ public class FoodTruck {
 		
 		_register = new Register(this);
 		_kitchenSystem = new KitchenSystem(this);
-		_expenditure = new Expenditure();
+		_expenditure = new Expenditure(this);
 		
 		BeginSession();
 		
