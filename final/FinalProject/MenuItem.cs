@@ -21,6 +21,8 @@ public class MenuItem {
 	public int _cookTimeinSeconds { get; set; }
 
 	public int _price { get; set; }
+
+	public int _cost { get; set;}
 	
 	public DateTime _startTime { get; set; } // this is set when it is put into a "fryer", hunter
 	
@@ -60,7 +62,9 @@ public class MenuItem {
 	public void Set_price(int price) {
 		_price = price;
 	}
-
+	public void Set_cost(int cost) {
+		_cost = cost;
+	}
 	public void Set_name(String name) {
 		_name = name;
 	}
